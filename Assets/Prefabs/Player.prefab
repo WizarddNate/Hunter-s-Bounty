@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1091889088077898055}
   - component: {fileID: 3711209517092578214}
   - component: {fileID: 3391736401969404661}
-  - component: {fileID: 2772913388030008946}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -47,10 +46,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9cc9500b1b9540e18165c7d20bbe16b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 10
+  maxSpeed: 5
   rotationSpeed: 360
   accelerationFactor: 5
   decelerationFactor: 10
+  gravity: -9.81
+  dashingCooldown: 1.5
+  dashingTime: 0.2
+  dashingSpeed: 8
 --- !u!143 &3391736401969404661
 CharacterController:
   m_ObjectHideFlags: 0
@@ -76,22 +79,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2772913388030008946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 302680046843287610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9cc9500b1b9540e18165c7d20bbe16b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxSpeed: 10
-  rotationSpeed: 360
-  accelerationFactor: 5
-  decelerationFactor: 10
 --- !u!1 &1614988351834427197
 GameObject:
   m_ObjectHideFlags: 0
