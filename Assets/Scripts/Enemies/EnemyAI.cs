@@ -65,6 +65,7 @@ public class EnemyAI : MonoBehaviour
 
         //this shouldnt happen, but oh well!
         if (!playerInSightRange && playerInAttackRange) Debug.Log("Attack range falsely called");
+
     }
 
     private void Patrolling()
@@ -170,16 +171,16 @@ public class EnemyAI : MonoBehaviour
 
     private void SpawnEssence()
     {
-        float _randomX = Random.Range(-dropRange, dropRange);
-        float _randomZ = Random.Range(-dropRange, dropRange);
-
         float dropNum = Random.Range(minDropRate, maxDropRate);
-        Debug.Log("Drop number: " + dropNum);
+        
 
         int i = 0;
         while (i < dropNum)
         {
-            Debug.Log("i = " + i);
+            
+            float _randomX = Random.Range(-dropRange, dropRange);
+            float _randomZ = Random.Range(-dropRange, dropRange);
+
             Instantiate(essence, new Vector3(transform.position.x + _randomX, transform.position.y, transform.position.z + _randomZ), Quaternion.identity);
 
             i++;

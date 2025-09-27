@@ -29,15 +29,19 @@ public class PlayerController : MonoBehaviour
     private bool _isDashing;
     private bool _dashInput;
 
-
     [Header("Attacking")]
     public GameObject meleeWeapon;
+    public GameObject aimPivot;
     [SerializeField] protected CooldownTimer attackCooldownTimer;
+
+    [Header("Pickups")]
+    public int essenceCount;
 
     //Inputs
     private InputSystem_Actions _playerInputActions;
     private Vector3 _input;
     private InputAction meleeAttack;
+    private InputAction rangedAttack;
 
     private void Awake()
     {
@@ -45,6 +49,8 @@ public class PlayerController : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
 
         _canDash = true;
+
+        essenceCount = 0;
     }
 
     private void Start()
@@ -60,6 +66,11 @@ public class PlayerController : MonoBehaviour
         meleeAttack = _playerInputActions.Player.MeleeAttack;
         meleeAttack.Enable();
         meleeAttack.performed += MeleeAttack;
+
+        rangedAttack = _playerInputActions.Player.RangedAttack;
+        rangedAttack.Enable();
+        rangedAttack.performed += RangedAttackAim; //holding down button
+        rangedAttack.canceled += RangedAttackRelease;
 
     }
 
@@ -164,6 +175,8 @@ public class PlayerController : MonoBehaviour
     /// ATTACKING ///
     /// 
     /// </summary>
+
+    // melee attack
     void MeleeAttack(InputAction.CallbackContext context)
     {
         //Debug.Log("slash!!");
@@ -187,7 +200,31 @@ public class PlayerController : MonoBehaviour
     public void MeleeAttackEnemy()
     {
         Debug.Log("enemy hit!");
+    }
 
+    void RangedAttackAim(InputAction.CallbackContext context)
+    {
+        aimPivot.SetActive(true);
+    }
 
+    void RangedAttackRelease(InputAction.CallbackContext context)
+    {
+        aimPivot.SetActive(false);
+        Debug.Log("fire!");
+    }
+
+    /// <summary>
+    /// 
+    /// PICKUP ///
+    /// 
+    /// </summary>
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (GameObject.FindWithTag("Essence"))
+        { 
+            Destroy(other.gameObject);
+            essenceCount++;
+        }
     }
 }
