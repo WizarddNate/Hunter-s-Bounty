@@ -31,8 +31,7 @@ public class PlayerController : MonoBehaviour
 
 
     [Header("Attacking")]
-    public int meleeDamage;
-    public GameObject meleeWeaponCollider;
+    public GameObject meleeWeapon;
     [SerializeField] protected CooldownTimer attackCooldownTimer;
 
     //Inputs
@@ -177,23 +176,11 @@ public class PlayerController : MonoBehaviour
     //create slashing hitbox (TEMP)
     private IEnumerator SlashAttack()
     {
-        meleeWeaponCollider.SetActive(true);
+        meleeWeapon.SetActive(true);
 
         yield return new WaitForSeconds(0.5f);
 
-        meleeWeaponCollider.SetActive(false);
-    }
-
-
-    //detect collison from hitbox.
-    private void OnCollisionEnter(Collision col)
-    {
-        if (col.gameObject.TryGetComponent<EnemyAI>(out EnemyAI enemyComponent))
-        {
-            Debug.Log("enemy spotted");
-            enemyComponent.TakeDamage(meleeDamage);
-            //MeleeAttackEnemy();
-        }
+        meleeWeapon.SetActive(false);
     }
 
     //if collision = enemy: do damage

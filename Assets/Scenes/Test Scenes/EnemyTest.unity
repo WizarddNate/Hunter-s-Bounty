@@ -685,6 +685,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3433447825772821947, guid: 65a4701261e6f96438918efed6528794, type: 3}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3433447825772821947, guid: 65a4701261e6f96438918efed6528794, type: 3}
       propertyPath: maxhealth
       value: 10
       objectReference: {fileID: 0}
@@ -702,6 +706,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9214863059384902508, guid: 85c5b3944d6e9f347ac2728148b4e2a3, type: 3}
   m_PrefabInstance: {fileID: 1296487989}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &841327994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841327989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7336f3b22ef7c144ea81731a3d91b033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleeDamage: 20
 --- !u!1001 &1264829257
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -812,6 +829,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3351417650895139286, guid: 85c5b3944d6e9f347ac2728148b4e2a3, type: 3}
+      propertyPath: maxHealth
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3351417650895139286, guid: 85c5b3944d6e9f347ac2728148b4e2a3, type: 3}
       propertyPath: healthText
       value: 
       objectReference: {fileID: 1885687197}
@@ -819,6 +840,10 @@ PrefabInstance:
       propertyPath: meleeDamage
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 3711209517092578214, guid: 85c5b3944d6e9f347ac2728148b4e2a3, type: 3}
+      propertyPath: meleeWeapon
+      value: 
+      objectReference: {fileID: 841327989}
     - target: {fileID: 3711209517092578214, guid: 85c5b3944d6e9f347ac2728148b4e2a3, type: 3}
       propertyPath: meleeWeaponCollider
       value: 
@@ -834,7 +859,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9214863059384902508, guid: 85c5b3944d6e9f347ac2728148b4e2a3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 841327994}
   m_SourcePrefab: {fileID: 100100000, guid: 85c5b3944d6e9f347ac2728148b4e2a3, type: 3}
 --- !u!4 &1634697142 stripped
 Transform:
@@ -1153,8 +1181,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1634697142}
     - target: {fileID: 3433447825772821947, guid: 65a4701261e6f96438918efed6528794, type: 3}
-      propertyPath: maxhealth
-      value: 10
+      propertyPath: dropRange
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3433447825772821947, guid: 65a4701261e6f96438918efed6528794, type: 3}
+      propertyPath: maxDropRate
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3433447825772821947, guid: 65a4701261e6f96438918efed6528794, type: 3}
+      propertyPath: minDropRate
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8289728108322573128, guid: 65a4701261e6f96438918efed6528794, type: 3}
       propertyPath: m_Name
@@ -1212,6 +1248,10 @@ PrefabInstance:
     - target: {fileID: 2915862010350940113, guid: 65a4701261e6f96438918efed6528794, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3433447825772821947, guid: 65a4701261e6f96438918efed6528794, type: 3}
+      propertyPath: damage
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3433447825772821947, guid: 65a4701261e6f96438918efed6528794, type: 3}
       propertyPath: maxhealth

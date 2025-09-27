@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8261276676039104565}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163,8 +163,12 @@ MonoBehaviour:
   timeBetweenAttacks: 0.5
   sightRange: 10
   attackRange: 2
-  health: 10
-  damage: 2
+  maxhealth: 10
+  damage: 1
+  dropRange: 3
+  essence: {fileID: 6862349062168952313, guid: 70328f1f46c29e84fb3afde78ed73195, type: 3}
+  minDropRate: 1
+  maxDropRate: 3
 --- !u!195 &8261276676039104565
 NavMeshAgent:
   m_ObjectHideFlags: 0

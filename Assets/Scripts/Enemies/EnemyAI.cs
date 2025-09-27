@@ -33,6 +33,11 @@ public class EnemyAI : MonoBehaviour
     public int damage;
     private PlayerHealth playerHealth;
 
+    [Header("Dropping Objects")]
+    public float dropRange;
+    public GameObject essence;
+    public int minDropRate;
+    public int maxDropRate;
 
     private void Awake()
     {
@@ -155,10 +160,31 @@ public class EnemyAI : MonoBehaviour
         {
             //play death animation
 
+            //spawn essence
+            SpawnEssence();
+
             //destroy game object
-            Invoke(nameof(DestroyEnemy), 0.5f);
+            Invoke(nameof(DestroyEnemy), 0.25f);
         }
     }   
+
+    private void SpawnEssence()
+    {
+        float _randomX = Random.Range(-dropRange, dropRange);
+        float _randomZ = Random.Range(-dropRange, dropRange);
+
+        float dropNum = Random.Range(minDropRate, maxDropRate);
+        Debug.Log("Drop number: " + dropNum);
+
+        int i = 0;
+        while (i < dropNum)
+        {
+            Debug.Log("i = " + i);
+            Instantiate(essence, new Vector3(transform.position.x + _randomX, transform.position.y, transform.position.z + _randomZ), Quaternion.identity);
+
+            i++;
+        }
+    }
 
     private void DestroyEnemy()
     { 
