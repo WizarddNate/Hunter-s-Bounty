@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     [Header("Health vars")]
-    public int health;
+    public int health {get; set;}
     public int maxHealth;
     //public float damageCooldown;
     private bool isDying;

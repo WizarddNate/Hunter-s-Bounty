@@ -2,12 +2,19 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
+    public CharacterController _characterController;
+
+    [Header("Speed Functionality")]
     [SerializeField] private float maxSpeed = 10f;
-    [SerializeField] private float rotationSpeed = 360f;    
+    [SerializeField] private float rotationSpeed = 360f;
+
+    private Vector3 _velocity;
+    private float _currentSpeed;
 
     [SerializeField] private float accelerationFactor = 5f;
     [SerializeField] private float decelerationFactor = 10f;
@@ -17,19 +24,20 @@ public class PlayerController : MonoBehaviour
     [Header("Dash")]
     [SerializeField] private float dashingCooldown = 1.5f;
     [SerializeField] private float dashingTime = 0.2f;
-
     [SerializeField] private float dashingSpeed = 7f;
-
     private bool _canDash;
     private bool _isDashing;
-
     private bool _dashInput;
 
-    private Vector3 _velocity;
-    private float _currentSpeed;
+
+    [Header("Attacking")]
+    public GameObject meleeWeaponCollider;
+
+
+    //Inputs
     private InputSystem_Actions _playerInputActions;
     private Vector3 _input;
-    private CharacterController _characterController;
+    private InputAction meleeAttack;
 
     private void Awake()
     {
@@ -39,9 +47,20 @@ public class PlayerController : MonoBehaviour
         _canDash = true;
     }
 
+    private void Start()
+    {
+        
+    }
+
     private void OnEnable()
     {
         _playerInputActions.Player.Enable();
+
+        //enable melee attack 
+        meleeAttack = _playerInputActions.Player.MeleeAttack;
+        meleeAttack.Enable();
+        meleeAttack.performed += MeleeAttack;
+
     }
 
     private void OnDisable()
@@ -75,6 +94,13 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Dash());
         }
     }
+
+
+    /// <summary>
+    /// 
+    /// MOVEMENT ///
+    /// 
+    /// </summary>
 
     private IEnumerator Dash()
     {
@@ -131,5 +157,45 @@ public class PlayerController : MonoBehaviour
         _dashInput = _playerInputActions.Player.Sprint.IsPressed();
 
         //Debug.Log(_input);
+    }
+
+    /// <summary>
+    /// 
+    /// ATTACKING ///
+    /// 
+    /// </summary>
+    void MeleeAttack(InputAction.CallbackContext context)
+    {
+        Debug.Log("slash!!");
+        //play animation
+
+        //temp
+        StartCoroutine(SlashAttack());
+    }
+
+    //create slashing hitbox (TEMP)
+    private IEnumerator SlashAttack()
+    {
+        meleeWeaponCollider.SetActive(true);
+
+        yield return new WaitForSeconds(0.5f);
+
+        meleeWeaponCollider.SetActive(false);
+    }
+
+
+    //detect collison from hitbox.
+    private void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.CompareTag("Enemy"))
+        {
+            MeleeAttackEnemy();
+        }
+    }
+
+    //if collision = enemy: do damage
+    public void MeleeAttackEnemy()
+    {
+        Debug.Log("enemy hit!");
     }
 }
