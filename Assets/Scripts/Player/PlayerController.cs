@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed = 10f;
     [SerializeField] private float rotationSpeed = 360f;    
 
+//    [SerializeField] 
+
     private InputSystem_Actions _playerInputActions;
     private Vector3 _input;
     private CharacterController _characterController;
@@ -27,7 +29,7 @@ public class PlayerController : MonoBehaviour
         _playerInputActions.Player.Disable();
     }
 
-    private void update()
+    private void Update()
     {
         GatherInput();
 
@@ -50,6 +52,8 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         Vector3 moveDirection  = transform.forward * speed * _input.magnitude * Time.deltaTime;
+
+        _characterController.Move(moveDirection); 
     }
 
     private void GatherInput()
