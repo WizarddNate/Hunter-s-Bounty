@@ -1,14 +1,17 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float speed = 10f;
+    [SerializeField] private float maxSpeed = 10f;
     [SerializeField] private float rotationSpeed = 360f;    
 
-//    [SerializeField] 
+    [SerializeField] private float accelerationFactor = 5f;
+    [SerializeField] private float decelerationFactor = 10f;
 
+    private float _currentSpeed;
     private InputSystem_Actions _playerInputActions;
     private Vector3 _input;
     private CharacterController _characterController;
@@ -34,8 +37,24 @@ public class PlayerController : MonoBehaviour
         GatherInput();
 
         Look();
+        CalculateSpeed();
 
         Move();
+    }
+
+    private void CalculateSpeed()
+    {
+        if (_input == Vector3.zero && _currentSpeed > 0)
+        {
+            _currentSpeed -= decelerationFactor * Time.deltaTime;
+        }
+        
+        else if (_input != Vector3.zero && _currentSpeed < maxSpeed) 
+        {
+            _currentSpeed += accelerationFactor * Time.deltaTime;
+        }
+
+        _currentSpeed = Mathf.Clamp( _currentSpeed, 0, maxSpeed );
     }
 
     private void Look()
@@ -51,7 +70,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        Vector3 moveDirection  = transform.forward * speed * _input.magnitude * Time.deltaTime;
+        Vector3 moveDirection = transform.forward * _currentSpeed * _input.magnitude * Time.deltaTime;
 
         _characterController.Move(moveDirection); 
     }
