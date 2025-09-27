@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +12,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float accelerationFactor = 5f;
     [SerializeField] private float decelerationFactor = 10f;
 
+    [Header("Dash")]
+    [SerializeField] private float dashingCooldown = 1.5f;
+    [SerializeField] private float dashingTime = 0.2f;
+
+    [SerializeField] private float dashingSpeed = 7f;
+
+    private bool _canDash;
+    private bool _isDashing;
+
+    private bool _dashInput;
+
     private float _currentSpeed;
     private InputSystem_Actions _playerInputActions;
     private Vector3 _input;
@@ -20,6 +32,8 @@ public class PlayerController : MonoBehaviour
     {
         _playerInputActions = new InputSystem_Actions();
         _characterController = GetComponent<CharacterController>();
+
+        _canDash = true;
     }
 
     private void OnEnable()
@@ -40,6 +54,21 @@ public class PlayerController : MonoBehaviour
         CalculateSpeed();
 
         Move();
+
+        if (_dashInput && _canDash)
+        {
+            StartCoroutine(Dash());
+        }
+    }
+
+    private IEnumerator Dash()
+    {
+        _canDash = false;
+        _isDashing = true;
+        yield return new WaitForSeconds(dashingTime);
+        _isDashing = false;
+        yield return new WaitForSeconds(dashingCooldown);
+        _canDash = true;
     }
 
     private void CalculateSpeed()
@@ -48,13 +77,12 @@ public class PlayerController : MonoBehaviour
         {
             _currentSpeed -= decelerationFactor * Time.deltaTime;
         }
-        
-        else if (_input != Vector3.zero && _currentSpeed < maxSpeed) 
+        else if (_input != Vector3.zero && _currentSpeed < maxSpeed)
         {
             _currentSpeed += accelerationFactor * Time.deltaTime;
         }
 
-        _currentSpeed = Mathf.Clamp( _currentSpeed, 0, maxSpeed );
+        _currentSpeed = Mathf.Clamp(_currentSpeed, 0, maxSpeed);
     }
 
     private void Look()
@@ -70,6 +98,12 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
+        if (_isDashing)
+        {
+            _characterController.Move(transform.forward * dashingSpeed * Time.deltaTime);
+            return;
+        }
+        
         Vector3 moveDirection = transform.forward * _currentSpeed * _input.magnitude * Time.deltaTime;
 
         _characterController.Move(moveDirection); 
@@ -79,6 +113,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 input = _playerInputActions.Player.Move.ReadValue<Vector2>();
         _input = new Vector3(input.x, 0, input.y);
+        _dashInput = _playerInputActions.Player.Sprint.IsPressed();
 
         //Debug.Log(_input);
     }
