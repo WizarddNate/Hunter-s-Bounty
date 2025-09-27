@@ -164,7 +164,7 @@ public class PlayerController : MonoBehaviour
     /// ATTACKING ///
     /// 
     /// </summary>
-    void MeleeAttack(InputAction.CallbackContext context)
+    private void MeleeAttack(InputAction.CallbackContext context)
     {
         //Debug.Log("slash!!");
         //play animation
