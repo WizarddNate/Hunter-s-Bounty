@@ -20,7 +20,8 @@ public class EnemyAI : MonoBehaviour
     bool alreadyAttacked;
 
     [Header("States")]
-    public float sightRange, attackRange;
+    public float sightRange;
+    public float attackRange;
     bool playerInSightRange, playerInAttackRange;
 
     [Header("Health")]

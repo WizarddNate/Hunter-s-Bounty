@@ -935,7 +935,7 @@ MonoBehaviour:
     m_Bits: 64
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 10
-  timeBetweenAttacks: 2
+  timeBetweenAttacks: 0.5
   sightRange: 10
   attackRange: 2
   health: 10
@@ -991,6 +991,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   maxHealth: 10
+  hitDelay: 0.5
+  invincibilityTimer:
+    coolDownAmount: 0.5
   healthText: {fileID: 1885687197}
 --- !u!1 &1878784116
 GameObject:
