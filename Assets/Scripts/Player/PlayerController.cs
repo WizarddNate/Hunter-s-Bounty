@@ -31,8 +31,9 @@ public class PlayerController : MonoBehaviour
 
 
     [Header("Attacking")]
+    public int meleeDamage;
     public GameObject meleeWeaponCollider;
-
+    [SerializeField] protected CooldownTimer attackCooldownTimer;
 
     //Inputs
     private InputSystem_Actions _playerInputActions;
@@ -166,7 +167,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void MeleeAttack(InputAction.CallbackContext context)
     {
-        Debug.Log("slash!!");
+        //Debug.Log("slash!!");
         //play animation
 
         //temp
@@ -187,9 +188,11 @@ public class PlayerController : MonoBehaviour
     //detect collison from hitbox.
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.CompareTag("Enemy"))
+        if (col.gameObject.TryGetComponent<EnemyAI>(out EnemyAI enemyComponent))
         {
-            MeleeAttackEnemy();
+            Debug.Log("enemy spotted");
+            enemyComponent.TakeDamage(meleeDamage);
+            //MeleeAttackEnemy();
         }
     }
 
@@ -197,5 +200,7 @@ public class PlayerController : MonoBehaviour
     public void MeleeAttackEnemy()
     {
         Debug.Log("enemy hit!");
+
+
     }
 }

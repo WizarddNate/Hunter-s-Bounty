@@ -25,7 +25,8 @@ public class EnemyAI : MonoBehaviour
     bool playerInSightRange, playerInAttackRange;
 
     [Header("Health")]
-    public int health;
+    public int maxhealth;
+    private int health;
     bool isDying;
 
     [Header("Damage")]
@@ -41,6 +42,10 @@ public class EnemyAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
     }
 
+    public void Start()
+    {
+        health = maxhealth;
+    }
     private void Update()
     {
         //Check for sight
@@ -141,9 +146,9 @@ public class EnemyAI : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damageAmount)
     {
-        health -= damage;
+        health -= damageAmount;
 
         //DIE!!!!!!!!!!!
         if (health <= 0)
