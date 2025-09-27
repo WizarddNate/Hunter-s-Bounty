@@ -80,6 +80,6 @@ public class PlayerController : MonoBehaviour
         Vector2 input = _playerInputActions.Player.Move.ReadValue<Vector2>();
         _input = new Vector3(input.x, 0, input.y);
 
-        Debug.Log(_input);
+        //Debug.Log(_input);
     }
 }
