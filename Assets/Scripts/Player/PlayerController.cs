@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float accelerationFactor = 5f;
     [SerializeField] private float decelerationFactor = 10f;
 
+    [SerializeField] private float gravity = -9.81f;
+
     [Header("Dash")]
     [SerializeField] private float dashingCooldown = 1.5f;
     [SerializeField] private float dashingTime = 0.2f;
@@ -23,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
     private bool _dashInput;
 
+    private Vector3 _velocity;
     private float _currentSpeed;
     private InputSystem_Actions _playerInputActions;
     private Vector3 _input;
@@ -48,6 +51,18 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        bool isGrounded = _characterController.isGrounded;
+
+        if (isGrounded && _velocity.y < 0)
+        {
+            _velocity.y = -2;
+        }
+
+        if (!isGrounded)
+        {
+            _velocity.y = gravity * Time.deltaTime; 
+        }
+
         GatherInput();
 
         Look();
@@ -104,7 +119,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
         
-        Vector3 moveDirection = transform.forward * _currentSpeed * _input.magnitude * Time.deltaTime;
+        Vector3 moveDirection = transform.forward * _currentSpeed * _input.magnitude * Time.deltaTime + _velocity;
 
         _characterController.Move(moveDirection); 
     }
