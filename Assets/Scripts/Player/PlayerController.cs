@@ -130,6 +130,6 @@ public class PlayerController : MonoBehaviour
         _input = new Vector3(input.x, 0, input.y);
         _dashInput = _playerInputActions.Player.Sprint.IsPressed();
 
-        Debug.Log(_input);
+        //Debug.Log(_input);
     }
 }
