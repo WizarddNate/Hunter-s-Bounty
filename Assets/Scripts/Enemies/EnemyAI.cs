@@ -11,23 +11,32 @@ public class EnemyAI : MonoBehaviour
 
     [Header("Patrolling")]
     public Vector3 walkPoint;
-    public bool walkPointIsSet;
     public float walkPointRange;
+    bool walkPointIsSet;
 
     [Header("Attacking")]
+    //public EnemyAttack attack;
     public float timeBetweenAttacks;
     bool alreadyAttacked;
 
     [Header("States")]
     public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange;
+    bool playerInSightRange, playerInAttackRange;
 
     [Header("Health")]
     public int health;
+    bool isDying;
+
+    [Header("Damage")]
+    public int damage;
+    private PlayerHealth playerHealth;
+
 
     private void Awake()
     {
         player = GameObject.FindWithTag("Player").transform;
+        playerHealth = GameObject.FindWithTag("Player").transform.GetComponent<PlayerHealth>();
+
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -51,6 +60,8 @@ public class EnemyAI : MonoBehaviour
     {
         //Debug.Log("Patrolling...");
 
+        if (isDying) return;
+
         //look for walk point
         if (!walkPointIsSet) SearchWalkPoint();
 
@@ -69,7 +80,6 @@ public class EnemyAI : MonoBehaviour
 
     private void SearchWalkPoint()
     {
-        Debug.Log("Finding walk point...");
 
         //Calculate random point in range
         float randomX = Random.Range( -walkPointRange, walkPointRange);
@@ -89,13 +99,18 @@ public class EnemyAI : MonoBehaviour
 
     private void ChasePlayer()
     {
-        Debug.Log("Chasing...");
+        //Debug.Log("Chasing...");
+
+        if (isDying) return;
+
         agent.SetDestination(player.position);
     }
 
     private void AttackPlayer()
     {
-        Debug.Log("Attacking!");
+        //Debug.Log("Attacking!");
+
+        if (isDying) return;
 
         //make sure the enemy doesn't move while attacking
         agent.SetDestination(transform.position);
@@ -106,9 +121,13 @@ public class EnemyAI : MonoBehaviour
         {
             ///
             // ATTACK CODE HREE
-            // deal damage
-            // do animation
             ///
+
+            // deal damage to player
+            playerHealth.TakeDamage(damage);
+
+            // do animation
+
 
             //register attack and wait before next one can be executed
             alreadyAttacked = true;
@@ -125,11 +144,18 @@ public class EnemyAI : MonoBehaviour
     {
         health -= damage;
 
-        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
-    }
+        //DIE!!!!!!!!!!!
+        if (health <= 0)
+        {
+            //play death animation
+
+            //destroy game object
+            Invoke(nameof(DestroyEnemy), 0.5f);
+        }
+    }   
 
     private void DestroyEnemy()
-    {
+    { 
         Destroy(gameObject);
     }
 }

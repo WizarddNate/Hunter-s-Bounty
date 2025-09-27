@@ -33,6 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1012874901482601574}
+  - {fileID: 8360392273732368338}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3711209517092578214
@@ -51,6 +52,9 @@ MonoBehaviour:
   rotationSpeed: 360
   accelerationFactor: 5
   decelerationFactor: 10
+  dashingCooldown: 1.5
+  dashingTime: 0.2
+  dashingSpeed: 7
 --- !u!143 &3391736401969404661
 CharacterController:
   m_ObjectHideFlags: 0
@@ -92,6 +96,9 @@ MonoBehaviour:
   rotationSpeed: 360
   accelerationFactor: 5
   decelerationFactor: 10
+  dashingCooldown: 1.5
+  dashingTime: 0.2
+  dashingSpeed: 7
 --- !u!1 &1614988351834427197
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,7 +112,7 @@ GameObject:
   - component: {fileID: 5170945555197431512}
   - component: {fileID: 5870398669850216935}
   m_Layer: 6
-  m_Name: Cube
+  m_Name: Orientation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,12 +126,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1614988351834427197}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.35, y: 0.32, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.3499999, y: 0.32, z: 0}
   m_LocalScale: {x: 0.5, y: 0.3, z: 0.64}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1012874901482601574}
+  m_Father: {fileID: 1091889088077898055}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1203994382410416719
 MeshFilter:
@@ -231,8 +238,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8360392273732368338}
+  m_Children: []
   m_Father: {fileID: 1091889088077898055}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4376970468805240457
