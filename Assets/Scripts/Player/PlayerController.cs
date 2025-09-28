@@ -241,13 +241,14 @@ public class PlayerController : MonoBehaviour
 
     void RangedAttackRelease(InputAction.CallbackContext context)
     {
+        Debug.Log("mouse released");
+
         isRanged = false;
 
         fire = true;
 
         //reset aim
         currentRange = minRange;
-        aimPivot.SetActive(false);
     }
 
     /// <summary>
