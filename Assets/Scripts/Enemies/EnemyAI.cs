@@ -33,7 +33,7 @@ public class EnemyAI : MonoBehaviour, IEffectable
 
     [Header("Damage")]
     public int damage;
-    private PlayerHealth playerHealth;
+    public PlayerHealth playerHealth;
 
     [Header("Dropping Objects")]
     public float dropRange;
@@ -44,7 +44,7 @@ public class EnemyAI : MonoBehaviour, IEffectable
     private void Awake()
     {
         player = GameObject.FindWithTag("Player").transform;
-        playerHealth = GameObject.FindWithTag("Player").transform.GetComponent<PlayerHealth>();
+        playerHealth = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
 
         agent = GetComponent<NavMeshAgent>();
     }
