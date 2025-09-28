@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 {
     public CharacterController _characterController;
 
-    [SerializeField] private StatusEffectData _data;
+    [SerializeField] private SlowdownStatus _data;
 
     [Header("Speed Functionality")]
     [SerializeField] private float maxSpeed = 10f;
