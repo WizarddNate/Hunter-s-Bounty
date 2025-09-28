@@ -5,6 +5,8 @@ public class RangedAttack : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
     private Camera mainCamera;
 
+    public GameObject aimTarget;
+    
     private void Start()
     {
         // Cache the camera, Camera.main is an expensive operation.
@@ -29,9 +31,13 @@ public class RangedAttack : MonoBehaviour
 
             // Make the transform look in the direction.
             transform.forward = direction;
+
+            aimTarget.transform.position = position;
+
         }
     }
 
+    //return variables success and postion
     private (bool success, Vector3 position) GetMousePosition()
     {
         var ray = mainCamera.ScreenPointToRay(Input.mousePosition);

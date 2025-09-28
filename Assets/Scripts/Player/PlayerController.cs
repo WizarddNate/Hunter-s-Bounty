@@ -33,6 +33,14 @@ public class PlayerController : MonoBehaviour
     public GameObject meleeWeapon;
     public GameObject aimPivot;
     [SerializeField] protected CooldownTimer attackCooldownTimer;
+    private bool isMelee, isRanged;
+
+    [Header("Ranged Attack Bounds")]
+    public GameObject aimBoundsSphere;
+    public float boundsGrowthSpeed;
+    public Vector3 minRange;
+    public Vector3 maxRange;
+    public Vector3 currentRange;
 
     [Header("Pickups")]
     public int essenceCount;
@@ -42,6 +50,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 _input;
     private InputAction meleeAttack;
     private InputAction rangedAttack;
+    
 
     private void Awake()
     {
@@ -55,7 +64,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        
+        isMelee = false;
+        isRanged = false;
     }
 
     private void OnEnable()
@@ -104,6 +114,15 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(Dash());
         }
+
+        if (currentRange.magnitude <= maxRange.magnitude && isRanged)
+        {
+            Debug.Log(currentRange);
+            currentRange.x += boundsGrowthSpeed;
+            currentRange.z += boundsGrowthSpeed;
+        }
+
+        aimBoundsSphere.transform.localScale = new Vector3(currentRange.x, transform.localScale.y, currentRange.z);
     }
 
 
@@ -177,6 +196,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void MeleeAttack(InputAction.CallbackContext context)
     {
+        if (isRanged) return;
         //Debug.Log("slash!!");
         //play animation
 
@@ -202,11 +222,25 @@ public class PlayerController : MonoBehaviour
 
     void RangedAttackAim(InputAction.CallbackContext context)
     {
+        Debug.Log("aiming...");
+
+        isRanged = true;
+
         aimPivot.SetActive(true);
+        
+        //if (currentRange.magnitude <= maxRange.magnitude)
+        //{
+        //    Debug.Log(currentRange);
+        //    currentRange.x ++;
+        //    currentRange.z ++;
+        //}
     }
 
     void RangedAttackRelease(InputAction.CallbackContext context)
     {
+        isRanged = false;
+
+        currentRange = minRange;
         aimPivot.SetActive(false);
         Debug.Log("fire!");
     }
