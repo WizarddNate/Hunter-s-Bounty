@@ -564,6 +564,10 @@ PrefabInstance:
       propertyPath: healthText
       value: 
       objectReference: {fileID: 1305714345}
+    - target: {fileID: 3351417650895139286, guid: 85c5b3944d6e9f347ac2728148b4e2a3, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 668747025}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -677,6 +681,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 13.727}
+--- !u!114 &668747025 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3711209517092578214, guid: 85c5b3944d6e9f347ac2728148b4e2a3, type: 3}
+  m_PrefabInstance: {fileID: 595899779}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9cc9500b1b9540e18165c7d20bbe16b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &767664704
 PrefabInstance:
   m_ObjectHideFlags: 0

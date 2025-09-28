@@ -1,16 +1,14 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DeathBoost : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public float healthMultiplier = 0.2f;
+    public float speedMultiplier = 0.2f;
+    public float attackMultiplier = 0.2f;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

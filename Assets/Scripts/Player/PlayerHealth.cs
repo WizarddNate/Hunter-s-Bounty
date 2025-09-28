@@ -1,11 +1,17 @@
 using System.Security.Cryptography.X509Certificates;
 using TMPro;
+using UnityEditorInternal;
 using UnityEngine;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
     [Header("Health vars")]
-    public int health {get; set;}
+    public int health { get; set; }
     public int maxHealth;
     //public float damageCooldown;
     private bool isDying;
@@ -19,6 +25,32 @@ public class PlayerHealth : MonoBehaviour
     MeshRenderer meshRenderer;
     Color originColor;
     float flashTime = 0.15f;
+
+    [Header("Heal Spell")]
+    public PlayerController playerController;
+    private int healAmount = 1;
+    private float healDuration = 5f;
+    private float healCooldown = 1.5f;
+    private int essenceMin = 5;
+    private bool _canHeal;
+    private bool _isHealing;
+    private InputAction heal;
+
+    private InputSystem_Actions _playerInputActions;
+
+    private void OnEnable()
+    {
+        _playerInputActions.Player.Enable();
+
+        heal = _playerInputActions.Player.HealSpell;
+        heal.Enable();
+        //heal.performed += healInput;
+    }
+
+    private void OnDisable()
+    {
+
+    }
 
     public void Update()
     {
@@ -50,6 +82,12 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    /*    private void Awake()
+        {
+            _playerInputActions = new InputSystem_Actions();
+            _characterController = GetComponent<CharacterController>();
+        } */
+
     void FlashStart()
     {
         meshRenderer.material.color = Color.red;
@@ -67,5 +105,27 @@ public class PlayerHealth : MonoBehaviour
         DeathMenuManager.instance.GameOver();
         gameObject.SetActive(false);
     }
+
+    private IEnumerator HealSpell()
+    {
+        _canHeal = false;
+        _isHealing = true;
+        yield return new WaitForSeconds(healDuration);
+        health += healAmount;
+
+        //    _isHealing = false;
+        yield return new WaitForSeconds(healCooldown);
+        _canHeal = true;
+    }
+
+    public void healInput()
+    {
+        if (playerController.essenceCount > essenceMin)
+        {
+            StartCoroutine(HealSpell());
+        }
+    }
+    
+    
 
 }

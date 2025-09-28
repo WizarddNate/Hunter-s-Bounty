@@ -134,6 +134,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HealSpell"",
+                    ""type"": ""Button"",
+                    ""id"": ""d55fedfa-5314-4265-a343-8081a033d9d6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -585,6 +594,28 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
                     ""action"": ""Spell"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4ec31a1c-925f-4278-adb6-2ac289ac8e54"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""HealSpell"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""081a4d90-828d-4b2f-b594-8ada503af709"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""HealSpell"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1184,6 +1215,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_MeleeAttack = m_Player.FindAction("MeleeAttack", throwIfNotFound: true);
         m_Player_RangedAttack = m_Player.FindAction("RangedAttack", throwIfNotFound: true);
         m_Player_Spell = m_Player.FindAction("Spell", throwIfNotFound: true);
+        m_Player_HealSpell = m_Player.FindAction("HealSpell", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1275,6 +1307,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_MeleeAttack;
     private readonly InputAction m_Player_RangedAttack;
     private readonly InputAction m_Player_Spell;
+    private readonly InputAction m_Player_HealSpell;
     public struct PlayerActions
     {
         private @InputSystem_Actions m_Wrapper;
@@ -1291,6 +1324,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         public InputAction @MeleeAttack => m_Wrapper.m_Player_MeleeAttack;
         public InputAction @RangedAttack => m_Wrapper.m_Player_RangedAttack;
         public InputAction @Spell => m_Wrapper.m_Player_Spell;
+        public InputAction @HealSpell => m_Wrapper.m_Player_HealSpell;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1336,6 +1370,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Spell.started += instance.OnSpell;
             @Spell.performed += instance.OnSpell;
             @Spell.canceled += instance.OnSpell;
+            @HealSpell.started += instance.OnHealSpell;
+            @HealSpell.performed += instance.OnHealSpell;
+            @HealSpell.canceled += instance.OnHealSpell;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1376,6 +1413,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Spell.started -= instance.OnSpell;
             @Spell.performed -= instance.OnSpell;
             @Spell.canceled -= instance.OnSpell;
+            @HealSpell.started -= instance.OnHealSpell;
+            @HealSpell.performed -= instance.OnHealSpell;
+            @HealSpell.canceled -= instance.OnHealSpell;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1570,6 +1610,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         void OnMeleeAttack(InputAction.CallbackContext context);
         void OnRangedAttack(InputAction.CallbackContext context);
         void OnSpell(InputAction.CallbackContext context);
+        void OnHealSpell(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
