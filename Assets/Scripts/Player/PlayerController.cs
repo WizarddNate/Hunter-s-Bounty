@@ -9,7 +9,14 @@ public class PlayerController : MonoBehaviour
 {
     public CharacterController _characterController;
 
-    [SerializeField] private SlowdownStatus _data;
+   /* [Header("Slow")]
+    [SerializeField] private float slowCooldown = 1.5f;
+    [SerializeField] private float slowTime = 0.2f;
+    [SerializeField] private float slowSpeed = 7f;
+    private bool _canSlow;
+    private bool _isSlow;
+    private bool _slowInput;
+    private bool essenceMin; */
 
     [Header("Speed Functionality")]
     [SerializeField] private float maxSpeed = 10f;
@@ -62,8 +69,16 @@ public class PlayerController : MonoBehaviour
 
         _canDash = true;
 
-        essenceCount = 0;
+       // essenceCount = 0;
     }
+
+ /*   private void Slowing()
+    {
+        _playerInputActions = new InputSystem_Actions();
+        _characterController = GetComponent<CharacterController>();
+
+        _canSlow = true;
+    } */
 
     private void Start()
     {
@@ -118,12 +133,17 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Dash());
         }
 
+/*        if (_slowInput && _canSlow && essenceMin)
+        {
+            StartCoroutine(Slow());
+        }
+
         if (currentRange.magnitude <= maxRange.magnitude && isRanged)
         {
             //Debug.Log(currentRange);
             currentRange.x += boundsGrowthSpeed;
             currentRange.z += boundsGrowthSpeed;
-        }
+        } */
 
         aimBoundsSphere.transform.localScale = new Vector3(currentRange.x, transform.localScale.y, currentRange.z);
     }
@@ -144,6 +164,17 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(dashingCooldown);
         _canDash = true;
     }
+
+/*        private IEnumerator Slow()
+    {
+        essenceCount -= 5;
+        _canSlow = false;
+        _isSlow = true;
+        yield return new WaitForSeconds(slowTime);
+        _isSlow = false;
+        yield return new WaitForSeconds(slowCooldown);
+        _canSlow = true;
+    } */
 
     private void CalculateSpeed()
     {
@@ -190,6 +221,14 @@ public class PlayerController : MonoBehaviour
         _dashInput = _playerInputActions.Player.Sprint.IsPressed();
 
         //Debug.Log(_input);
+    }
+
+    public void HandleEffect()
+    {
+        //GameObject 
+
+        //input = _playerInputActions.Player.Spell.ReadValue<Vector2>();
+        
     }
 
     /// <summary>
@@ -241,13 +280,14 @@ public class PlayerController : MonoBehaviour
 
     void RangedAttackRelease(InputAction.CallbackContext context)
     {
+        Debug.Log("mouse released");
+
         isRanged = false;
 
         fire = true;
 
         //reset aim
         currentRange = minRange;
-        aimPivot.SetActive(false);
     }
 
     /// <summary>
@@ -256,12 +296,4 @@ public class PlayerController : MonoBehaviour
     /// 
     /// </summary>
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (GameObject.FindWithTag("Essence"))
-        { 
-            //Destroy(other.gameObject);
-            essenceCount++;
-        }
-    }
 }

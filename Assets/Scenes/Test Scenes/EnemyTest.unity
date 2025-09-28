@@ -299,7 +299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4882290261236528636, guid: c24f4a6e4568e7342a48f288a9231973, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -358,14 +358,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3351417650895139286, guid: 85c5b3944d6e9f347ac2728148b4e2a3, type: 3}
-      propertyPath: maxHealth
-      value: 20
+    - target: {fileID: 2534352502983846094, guid: 85c5b3944d6e9f347ac2728148b4e2a3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3351417650895139286, guid: 85c5b3944d6e9f347ac2728148b4e2a3, type: 3}
       propertyPath: healthText
       value: 
       objectReference: {fileID: 1885687197}
+    - target: {fileID: 3616586310893819551, guid: 85c5b3944d6e9f347ac2728148b4e2a3, type: 3}
+      propertyPath: parentAimer
+      value: 
+      objectReference: {fileID: 965764755}
+    - target: {fileID: 3711209517092578214, guid: 85c5b3944d6e9f347ac2728148b4e2a3, type: 3}
+      propertyPath: maxRange.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711209517092578214, guid: 85c5b3944d6e9f347ac2728148b4e2a3, type: 3}
+      propertyPath: maxRange.z
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -526,7 +538,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4882290261236528636, guid: c24f4a6e4568e7342a48f288a9231973, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5679670143752342153, guid: c24f4a6e4568e7342a48f288a9231973, type: 3}
       propertyPath: damage
@@ -881,6 +893,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &965764755 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2534352502983846094, guid: 85c5b3944d6e9f347ac2728148b4e2a3, type: 3}
+  m_PrefabInstance: {fileID: 267396133}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1162841021 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8892403630062127810, guid: 4e56894de25ef43408ded1292e102a81, type: 3}
