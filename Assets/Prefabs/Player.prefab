@@ -82,7 +82,7 @@ MonoBehaviour:
   rotationSpeed: 360
   accelerationFactor: 5
   decelerationFactor: 10
-  gravity: -9.81
+  gravity: 0
   dashingCooldown: 0
   dashingTime: 0.4
   dashingSpeed: 14
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6781fdea23e1df4482f8c19f531a4c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
+  maxHealth: 20
   invincibilityTimer:
     coolDownAmount: 0.25
   healthText: {fileID: 0}
@@ -406,7 +406,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2544351326281384961}
-  - component: {fileID: 557573068013912801}
+  - component: {fileID: 3186399834852079815}
   m_Layer: 2
   m_Name: RangedAimPivot
   m_TagString: Untagged
@@ -431,7 +431,7 @@ Transform:
   - {fileID: 2959610265993482482}
   m_Father: {fileID: 1091889088077898055}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &557573068013912801
+--- !u!114 &3186399834852079815
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -440,12 +440,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2534352502983846094}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35bf3ddacd38a464882b981f20318263, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d79bdd40e76cd6448b55248704e5370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 3711209517092578214}
-  rangedDamage: 10
-  col: {fileID: 6541453891049477883}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 8
+  aimTarget: {fileID: 6353420947525449586}
 --- !u!1 &5743908544260468498
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,7 +461,7 @@ GameObject:
   - component: {fileID: 5441848065967604396}
   m_Layer: 6
   m_Name: Capsule
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -568,6 +569,7 @@ GameObject:
   - component: {fileID: 2959610265993482482}
   - component: {fileID: 3827297054204434322}
   - component: {fileID: 2972732598132957910}
+  - component: {fileID: 3616586310893819551}
   - component: {fileID: 7233134659792643903}
   - component: {fileID: 6541453891049477883}
   m_Layer: 2
@@ -645,6 +647,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3616586310893819551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6353420947525449586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35bf3ddacd38a464882b981f20318263, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 3711209517092578214}
+  rangedDamage: 20
+  col: {fileID: 6541453891049477883}
 --- !u!114 &7233134659792643903
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,9 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour, IEffectable
-
 {
-    Animator animator;
     private SlowdownStatus _data;
 
     public NavMeshAgent agent;
@@ -35,7 +33,7 @@ public class EnemyAI : MonoBehaviour, IEffectable
 
     [Header("Damage")]
     public int damage;
-    private PlayerHealth playerHealth;
+    public PlayerHealth playerHealth;
 
     [Header("Dropping Objects")]
     public float dropRange;
@@ -43,17 +41,19 @@ public class EnemyAI : MonoBehaviour, IEffectable
     public int minDropRate;
     public int maxDropRate;
 
+    private float prevSpeed;
+
     private void Awake()
     {
         player = GameObject.FindWithTag("Player").transform;
-        playerHealth = GameObject.FindWithTag("Player").transform.GetComponent<PlayerHealth>();
+        playerHealth = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
 
         agent = GetComponent<NavMeshAgent>();
+        prevSpeed = agent.speed;
     }
 
     public void Start()
     {
-        animator = GetComponent<Animator>();
         health = maxhealth;
     }
     private void Update()
@@ -127,12 +127,11 @@ public class EnemyAI : MonoBehaviour, IEffectable
     {
         //Debug.Log("Attacking!");
 
-        
-
         if (isDying) return;
 
         //make sure the enemy doesn't move while attacking
         agent.SetDestination(transform.position);
+        agent.speed = 0;
 
         transform.LookAt(player);
 
@@ -146,8 +145,7 @@ public class EnemyAI : MonoBehaviour, IEffectable
             playerHealth.TakeDamage(damage);
 
             // do animation
-            animator.SetBool("attacking", true);
-            Debug.Log("attack");
+
 
             //register attack and wait before next one can be executed
             alreadyAttacked = true;
@@ -157,7 +155,7 @@ public class EnemyAI : MonoBehaviour, IEffectable
 
     private void ResetAttack()
     {
-        animator.SetBool("attacking", false);
+        agent.speed = prevSpeed;
         alreadyAttacked = false;
     }
 
