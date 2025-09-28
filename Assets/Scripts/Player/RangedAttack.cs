@@ -2,55 +2,37 @@ using UnityEngine;
 
 public class RangedAttack : MonoBehaviour
 {
-    [SerializeField] private LayerMask groundMask;
-    private Camera mainCamera;
-
-    public GameObject aimTarget;
-    
-    private void Start()
-    {
-        // Cache the camera, Camera.main is an expensive operation.
-        mainCamera = Camera.main;
-    }
+    [SerializeField] public PlayerController controller;
+    public int rangedDamage;
+    public Collider col;
 
     private void Update()
     {
-        Aim();
-    }
-
-    private void Aim()
-    {
-        var (success, position) = GetMousePosition();
-        if (success)
+        
+        if (controller.fire)
         {
-            // Calculate the direction
-            var direction = position - transform.position;
-
-            // Ignore the height difference.
-            direction.y = 0;
-
-            // Make the transform look in the direction.
-            transform.forward = direction;
-
-            aimTarget.transform.position = position;
-
+            Debug.Log("Fire!!");
+            if (col.gameObject.TryGetComponent<EnemyAI>(out EnemyAI enemyComponent))
+            {
+                Debug.Log("Target hit!!");
+                controller.fire = false;
+                enemyComponent.TakeDamage(rangedDamage);
+            }
         }
     }
 
-    //return variables success and postion
-    private (bool success, Vector3 position) GetMousePosition()
+    private void OnTriggerStay(Collider other)
     {
-        var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, groundMask))
-        {
-            // The Raycast hit something, return with the position.
-            return (success: true, position: hitInfo.point);
-        }
-        else
-        {
-            // The Raycast did not hit anything.
-            return (success: false, position: Vector3.zero);
-        }
+        //Debug.Log("Entered");
+        //if (controller.fire)
+        //{
+        //    Debug.Log("Fire!!");
+        //    if (other.gameObject.TryGetComponent<EnemyAI>(out EnemyAI enemyComponent))
+        //    {
+        //        Debug.Log("Target hit!!");
+        //        controller.fire = false;
+        //        enemyComponent.TakeDamage(rangedDamage);
+        //    }
+        //}
     }
 }

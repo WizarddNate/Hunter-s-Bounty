@@ -33,14 +33,15 @@ public class PlayerController : MonoBehaviour
     public GameObject meleeWeapon;
     public GameObject aimPivot;
     [SerializeField] protected CooldownTimer attackCooldownTimer;
-    private bool isMelee, isRanged;
+    private bool isRanged;
+    public bool fire { get; set; }
 
     [Header("Ranged Attack Bounds")]
     public GameObject aimBoundsSphere;
     public float boundsGrowthSpeed;
     public Vector3 minRange;
     public Vector3 maxRange;
-    public Vector3 currentRange;
+    private Vector3 currentRange;
 
     [Header("Pickups")]
     public int essenceCount;
@@ -64,7 +65,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        isMelee = false;
+        //isMelee = false;
         isRanged = false;
     }
 
@@ -117,7 +118,7 @@ public class PlayerController : MonoBehaviour
 
         if (currentRange.magnitude <= maxRange.magnitude && isRanged)
         {
-            Debug.Log(currentRange);
+            //Debug.Log(currentRange);
             currentRange.x += boundsGrowthSpeed;
             currentRange.z += boundsGrowthSpeed;
         }
@@ -240,9 +241,11 @@ public class PlayerController : MonoBehaviour
     {
         isRanged = false;
 
+        fire = true;
+
+        //reset aim
         currentRange = minRange;
         aimPivot.SetActive(false);
-        Debug.Log("fire!");
     }
 
     /// <summary>

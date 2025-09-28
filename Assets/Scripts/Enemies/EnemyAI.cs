@@ -26,7 +26,7 @@ public class EnemyAI : MonoBehaviour
 
     [Header("Health")]
     public int maxhealth;
-    private int health;
+    public int health;
     bool isDying;
 
     [Header("Damage")]

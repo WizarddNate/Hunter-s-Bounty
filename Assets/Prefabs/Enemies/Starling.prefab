@@ -164,11 +164,11 @@ MonoBehaviour:
   sightRange: 10
   attackRange: 2
   maxhealth: 10
-  damage: 1
+  damage: 0
   dropRange: 3
   essence: {fileID: 6862349062168952313, guid: 70328f1f46c29e84fb3afde78ed73195, type: 3}
-  minDropRate: 1
-  maxDropRate: 3
+  minDropRate: 2
+  maxDropRate: 5
 --- !u!195 &8261276676039104565
 NavMeshAgent:
   m_ObjectHideFlags: 0
