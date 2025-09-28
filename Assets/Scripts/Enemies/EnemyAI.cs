@@ -20,6 +20,7 @@ public class EnemyAI : MonoBehaviour, IEffectable
     //public EnemyAttack attack;
     public float timeBetweenAttacks;
     bool alreadyAttacked;
+    public bool isRangedEnemy;
 
     [Header("States")]
     public float sightRange;
@@ -34,6 +35,8 @@ public class EnemyAI : MonoBehaviour, IEffectable
     [Header("Damage")]
     public int damage;
     public PlayerHealth playerHealth;
+    public GameObject bulletSpawnPoint;
+    public GameObject bullet;
 
     [Header("Dropping Objects")]
     public float dropRange;
@@ -140,15 +143,19 @@ public class EnemyAI : MonoBehaviour, IEffectable
             ///
             // ATTACK CODE HREE
             ///
+            if (!isRangedEnemy)
+            {
+                // deal damage to player
+                playerHealth.TakeDamage(damage);
+            }
+            else {
+                Instantiate(bullet, bulletSpawnPoint.transform.position, Quaternion.identity);
+            }
+                // do animation
 
-            // deal damage to player
-            playerHealth.TakeDamage(damage);
 
-            // do animation
-
-
-            //register attack and wait before next one can be executed
-            alreadyAttacked = true;
+                //register attack and wait before next one can be executed
+                alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
