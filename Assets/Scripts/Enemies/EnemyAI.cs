@@ -4,7 +4,7 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour//, IEffectable
 {
     //private SlowdownStatus _data;
-
+    public Animator animator;
     public NavMeshAgent agent;
 
     public Transform player;
@@ -57,6 +57,7 @@ public class EnemyAI : MonoBehaviour//, IEffectable
 
     public void Start()
     {
+        animator = gameObject.GetComponentInChildren<Animator>();
         health = maxhealth;
     }
     private void Update()
@@ -151,11 +152,12 @@ public class EnemyAI : MonoBehaviour//, IEffectable
             else {
                 Instantiate(bullet, bulletSpawnPoint.transform.position, Quaternion.identity);
             }
-                // do animation
+            // do animation
 
+            animator.SetBool("attacking", true);
 
                 //register attack and wait before next one can be executed
-                alreadyAttacked = true;
+            alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
@@ -164,6 +166,7 @@ public class EnemyAI : MonoBehaviour//, IEffectable
     {
         agent.speed = prevSpeed;
         alreadyAttacked = false;
+        animator.SetBool("attacking", false);
     }
 
     public void TakeDamage(int damageAmount)
