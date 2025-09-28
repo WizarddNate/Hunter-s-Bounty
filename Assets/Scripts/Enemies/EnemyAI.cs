@@ -2,7 +2,9 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour, IEffectable
+
 {
+    Animator animator;
     private SlowdownStatus _data;
 
     public NavMeshAgent agent;
@@ -51,6 +53,7 @@ public class EnemyAI : MonoBehaviour, IEffectable
 
     public void Start()
     {
+        animator = GetComponent<Animator>();
         health = maxhealth;
     }
     private void Update()
@@ -124,6 +127,8 @@ public class EnemyAI : MonoBehaviour, IEffectable
     {
         //Debug.Log("Attacking!");
 
+        
+
         if (isDying) return;
 
         //make sure the enemy doesn't move while attacking
@@ -141,7 +146,8 @@ public class EnemyAI : MonoBehaviour, IEffectable
             playerHealth.TakeDamage(damage);
 
             // do animation
-
+            animator.SetBool("attacking", true);
+            Debug.Log("attack");
 
             //register attack and wait before next one can be executed
             alreadyAttacked = true;
@@ -151,6 +157,7 @@ public class EnemyAI : MonoBehaviour, IEffectable
 
     private void ResetAttack()
     {
+        animator.SetBool("attacking", false);
         alreadyAttacked = false;
     }
 
