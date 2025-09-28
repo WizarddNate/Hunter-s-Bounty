@@ -64,6 +64,8 @@ public class PlayerHealth : MonoBehaviour
     public void Die()
     {
         isDying = true;
+        DeathMenuManager.instance.GameOver();
+        gameObject.SetActive(false);
     }
 
 }
