@@ -77,14 +77,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterController: {fileID: 3391736401969404661}
-  maxSpeed: 5
+  _data: {fileID: 0}
+  maxSpeed: 8
   rotationSpeed: 360
   accelerationFactor: 5
   decelerationFactor: 10
   gravity: -9.81
-  dashingCooldown: 1.5
-  dashingTime: 0.2
-  dashingSpeed: 8
+  dashingCooldown: 0
+  dashingTime: 0.4
+  dashingSpeed: 14
   meleeWeapon: {fileID: 9214863059384902508}
   aimPivot: {fileID: 2534352502983846094}
   attackCooldownTimer:
@@ -442,13 +443,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35bf3ddacd38a464882b981f20318263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 8
   controller: {fileID: 3711209517092578214}
-  aimTarget: {fileID: 6353420947525449586}
-  col: {fileID: 6541453891049477883}
   rangedDamage: 10
+  col: {fileID: 6541453891049477883}
 --- !u!1 &5743908544260468498
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,7 +460,7 @@ GameObject:
   - component: {fileID: 5441848065967604396}
   m_Layer: 6
   m_Name: Capsule
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

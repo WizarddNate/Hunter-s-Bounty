@@ -61,13 +61,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7681637843259253821}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3213938, y: 0.3213938, z: -0.116977744, w: 0.8830223}
-  m_LocalPosition: {x: -15.907961, y: 9.467186, z: -3.275797}
+  m_LocalRotation: {x: 0.24184473, y: 0.66446304, z: -0.24184473, w: 0.66446304}
+  m_LocalPosition: {x: -21.45, y: 15.18, z: -2.1000004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7307297287499237401}
-  m_LocalEulerAnglesHint: {x: 2.592, y: 40, z: 0}
+  m_LocalEulerAnglesHint: {x: 40, y: 40.253, z: 0}
 --- !u!20 &1759638193083218209
 Camera:
   m_ObjectHideFlags: 0
@@ -77,8 +77,8 @@ Camera:
   m_GameObject: {fileID: 7681637843259253821}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.11949676, g: 0.07703406, b: 0.09114194, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -99,11 +99,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: -30
   far clip plane: 1000
   field of view: 60.000004
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 9
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -214,6 +214,7 @@ GameObject:
   - component: {fileID: 3487878722093351381}
   - component: {fileID: 1825543945423182402}
   - component: {fileID: 6865044083320135980}
+  - component: {fileID: 8202788970431462534}
   m_Layer: 0
   m_Name: IsoCam
   m_TagString: Untagged
@@ -229,13 +230,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8919109356798227280}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3213938, y: 0.3213938, z: -0.116977744, w: 0.8830223}
-  m_LocalPosition: {x: -15.907961, y: 9.467186, z: -3.275797}
+  m_LocalRotation: {x: 0.24184473, y: 0.66446304, z: -0.24184473, w: 0.66446304}
+  m_LocalPosition: {x: -21.45, y: 15.18, z: -2.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7307297287499237401}
-  m_LocalEulerAnglesHint: {x: 40, y: 40, z: 0}
+  m_LocalEulerAnglesHint: {x: 40, y: 90, z: 0}
 --- !u!114 &1825543945423182402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,8 +262,8 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 60.000004
-    OrthographicSize: 8
-    NearClipPlane: 0.3
+    OrthographicSize: 9
+    NearClipPlane: -30
     FarClipPlane: 1000
     Dutch: 0
     ModeOverride: 1
@@ -303,10 +304,23 @@ MonoBehaviour:
       Size: {x: 0.8, y: 0.8}
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
-  TargetOffset: {x: 0, y: 0, z: 0}
+  TargetOffset: {x: 0, y: 0, z: 0.99}
   Damping: {x: 1, y: 1, z: 1}
   Lookahead:
     Enabled: 0
     Time: 0
     Smoothing: 0
     IgnoreY: 0
+--- !u!114 &8202788970431462534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8919109356798227280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b6d0edff1e6f64478eb79f844d162c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ccam: {fileID: 1825543945423182402}

@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour, IEffectable
 {
-    private StatusEffectData _data;
+    private SlowdownStatus _data;
 
     public NavMeshAgent agent;
 
@@ -194,7 +194,7 @@ public class EnemyAI : MonoBehaviour, IEffectable
         Destroy(gameObject);
     }
 
-    public void ApplyEffect(StatusEffectData _data)
+    public void ApplyEffect(SlowdownStatus _data)
     {
         this._data = _data;
     }
