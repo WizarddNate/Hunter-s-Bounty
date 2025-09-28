@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : MonoBehaviour, IEffectable
 {
+    private StatusEffectData _data;
+
     public NavMeshAgent agent;
 
     public Transform player;
@@ -80,13 +82,13 @@ public class EnemyAI : MonoBehaviour
         //set walk point 
         if (walkPointIsSet)
             agent.SetDestination(walkPoint);
-        
+
 
         //walk
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
         //walkpoint reached!
-        if (distanceToWalkPoint.magnitude < 1f) 
+        if (distanceToWalkPoint.magnitude < 1f)
             walkPointIsSet = false;
     }
 
@@ -94,15 +96,15 @@ public class EnemyAI : MonoBehaviour
     {
 
         //Calculate random point in range
-        float randomX = Random.Range( -walkPointRange, walkPointRange);
+        float randomX = Random.Range(-walkPointRange, walkPointRange);
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
 
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y,transform.position.z + randomZ);
+        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
         //Debug.Log(walkPoint);
 
         //make sure the random point is actually on the ground
-        if (Physics.Raycast(walkPoint, - transform.up, 2f, whatIsGround))
+        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
             walkPointIsSet = true;
         else
             SearchWalkPoint();
@@ -145,7 +147,7 @@ public class EnemyAI : MonoBehaviour
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
-    } 
+    }
 
     private void ResetAttack()
     {
@@ -167,17 +169,17 @@ public class EnemyAI : MonoBehaviour
             //destroy game object
             Invoke(nameof(DestroyEnemy), 0.25f);
         }
-    }   
+    }
 
     private void SpawnEssence()
     {
         float dropNum = Random.Range(minDropRate, maxDropRate);
-        
+
 
         int i = 0;
         while (i < dropNum)
         {
-            
+
             float _randomX = Random.Range(-dropRange, dropRange);
             float _randomZ = Random.Range(-dropRange, dropRange);
 
@@ -188,7 +190,17 @@ public class EnemyAI : MonoBehaviour
     }
 
     private void DestroyEnemy()
-    { 
+    {
         Destroy(gameObject);
+    }
+
+    public void ApplyEffect(StatusEffectData _data)
+    {
+        this._data = _data;
+    }
+
+    public void RemoveEffect()
+    {
+        
     }
 }

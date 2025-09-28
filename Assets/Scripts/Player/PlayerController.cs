@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
 {
     public CharacterController _characterController;
 
+    [SerializeField] private StatusEffectData _data;
+
     [Header("Speed Functionality")]
     [SerializeField] private float maxSpeed = 10f;
     [SerializeField] private float rotationSpeed = 360f;
@@ -258,7 +260,7 @@ public class PlayerController : MonoBehaviour
     {
         if (GameObject.FindWithTag("Essence"))
         { 
-            Destroy(other.gameObject);
+            //Destroy(other.gameObject);
             essenceCount++;
         }
     }
