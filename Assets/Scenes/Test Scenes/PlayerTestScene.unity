@@ -1112,7 +1112,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Essence
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -991315361576595317, guid: 70328f1f46c29e84fb3afde78ed73195, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
