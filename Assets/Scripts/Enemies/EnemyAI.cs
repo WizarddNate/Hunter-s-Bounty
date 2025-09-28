@@ -1,8 +1,11 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+
 public class EnemyAI : MonoBehaviour, IEffectable
 {
+    //animator
+    public Animator animator;
     private SlowdownStatus _data;
 
     public NavMeshAgent agent;
@@ -54,6 +57,7 @@ public class EnemyAI : MonoBehaviour, IEffectable
 
     public void Start()
     {
+        animator = GetComponent<Animator>();
         health = maxhealth;
     }
     private void Update()
@@ -145,7 +149,7 @@ public class EnemyAI : MonoBehaviour, IEffectable
             playerHealth.TakeDamage(damage);
 
             // do animation
-
+            animator.SetBool("attacking", true);
 
             //register attack and wait before next one can be executed
             alreadyAttacked = true;
@@ -157,6 +161,7 @@ public class EnemyAI : MonoBehaviour, IEffectable
     {
         agent.speed = prevSpeed;
         alreadyAttacked = false;
+        animator.SetBool("attacking", false);
     }
 
     public void TakeDamage(int damageAmount)
