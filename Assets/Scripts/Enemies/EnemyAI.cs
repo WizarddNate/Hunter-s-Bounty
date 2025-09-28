@@ -41,12 +41,15 @@ public class EnemyAI : MonoBehaviour, IEffectable
     public int minDropRate;
     public int maxDropRate;
 
+    private float prevSpeed;
+
     private void Awake()
     {
         player = GameObject.FindWithTag("Player").transform;
         playerHealth = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
 
         agent = GetComponent<NavMeshAgent>();
+        prevSpeed = agent.speed;
     }
 
     public void Start()
@@ -128,6 +131,7 @@ public class EnemyAI : MonoBehaviour, IEffectable
 
         //make sure the enemy doesn't move while attacking
         agent.SetDestination(transform.position);
+        agent.speed = 0;
 
         transform.LookAt(player);
 
@@ -151,6 +155,7 @@ public class EnemyAI : MonoBehaviour, IEffectable
 
     private void ResetAttack()
     {
+        agent.speed = prevSpeed;
         alreadyAttacked = false;
     }
 
