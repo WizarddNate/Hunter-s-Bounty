@@ -1,6 +1,4 @@
-using System.Security.Cryptography.X509Certificates;
 using TMPro;
-using UnityEditorInternal;
 using UnityEngine;
 using System;
 using System.Collections;
@@ -40,10 +38,10 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnEnable()
     {
-        _playerInputActions.Player.Enable();
+        //_playerInputActions.Player.Enable();
 
-        heal = _playerInputActions.Player.HealSpell;
-        heal.Enable();
+        //heal = _playerInputActions.Player.HealSpell;
+        //heal.Enable();
         //heal.performed += healInput;
     }
 
@@ -54,7 +52,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void Update()
     {
-        healthText.SetText("HP: {0}", health);
+        //healthText.SetText("HP: {0}", health);
     }
 
     public void Start()

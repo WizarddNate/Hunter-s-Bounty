@@ -218,7 +218,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 input = _playerInputActions.Player.Move.ReadValue<Vector2>();
         _input = new Vector3(input.x, 0, input.y);
-        _dashInput = _playerInputActions.Player.Sprint.IsPressed();
+        _dashInput = _playerInputActions.Player.Dash.IsPressed();
 
         //Debug.Log(_input);
     }
