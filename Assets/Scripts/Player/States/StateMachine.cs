@@ -1,0 +1,56 @@
+using UnityEngine;
+
+/// <summary>
+/// this state machine script is generic enough to handle transitions/updates for ALL state machines.
+/// </summary>
+public class StateMachine : MonoBehaviour
+{
+    BaseState currentState;
+
+    private void Start()
+    {
+        currentState = GetInitialState();
+
+        //enter current state
+        if (currentState != null)
+            currentState.Enter();
+    }
+
+    void Update()
+    {
+        if (currentState != null)
+        {
+            currentState.UpdateLogic();
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (currentState != null)
+        {
+            currentState.UpdatePhysics();
+        }
+    }
+
+    public void ChangeState(BaseState newState)
+    {
+        currentState.Exit();
+
+        currentState = newState;
+
+        currentState.Enter();
+    }
+
+    protected virtual BaseState GetInitialState()
+    {
+        return null;
+    }
+
+    private void OnGUI()
+    {
+        //test string
+        string content = currentState != null ? currentState.name : "(no current state!)";
+
+        GUILayout.Label($"<color = 'black'><size = 40>{content}</size></color>");
+    }
+}
