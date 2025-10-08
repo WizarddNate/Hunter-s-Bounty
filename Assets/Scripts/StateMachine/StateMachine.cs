@@ -24,7 +24,7 @@ public class StateMachine : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    void LateUpdate()
     {
         if (currentState != null)
         {

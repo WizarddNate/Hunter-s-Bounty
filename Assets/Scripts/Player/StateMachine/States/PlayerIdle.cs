@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Windows;
 
 [Serializable]
 public class PlayerIdle : BaseState
@@ -12,6 +13,9 @@ public class PlayerIdle : BaseState
     {
         base.Enter();
         _sm = (MovementSM)stateMachine;
+
+        _sm._currentSpeed = 0;
+        Debug.Log("Current state: idle!");
     }
 
     public override void UpdateLogic()
@@ -19,10 +23,9 @@ public class PlayerIdle : BaseState
         base.UpdateLogic();
 
         //transition to "moving" state if input != 0
-        if (_sm._currentSpeed != 0)
+        if (_sm._inputXZ != Vector3.zero)
         {
             stateMachine.ChangeState(((MovementSM)stateMachine).movingState);
-            Debug.Log("Current state: moving!");
         }
 
     }
