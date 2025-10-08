@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1091889088077898055}
   - component: {fileID: 3391736401969404661}
-  - component: {fileID: 7425395383080749761}
-  - component: {fileID: 3643522833042910951}
-  - component: {fileID: 3711209517092578214}
+  - component: {fileID: 944052390225730535}
   - component: {fileID: 5358006403793944106}
+  - component: {fileID: 7081651053492378552}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -65,46 +64,8 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.3, z: 0}
---- !u!114 &7425395383080749761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 302680046843287610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e499c0976657a3348b82fec3df74d73a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _characterController: {fileID: 3391736401969404661}
-  maxSpeed: 10
-  _rotationSpeed: 720
-  _gravity: -9.81
-  _acceleration: 5
-  _deceleration: 10
-  dashingCooldown: 1.5
-  dashingTime: 0.2
-  dashingSpeed: 7
-  inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
---- !u!114 &3643522833042910951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 302680046843287610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7e654c12fb81114285496033ddd3436, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 20
-  invincibilityTimer:
-    coolDownAmount: 0.25
-  healthText: {fileID: 0}
---- !u!114 &3711209517092578214
+  m_Center: {x: 0, y: 0.7, z: 0}
+--- !u!114 &944052390225730535
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,27 +74,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 302680046843287610}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9cc9500b1b9540e18165c7d20bbe16b, type: 3}
+  m_Script: {fileID: 11500000, guid: 58aabe4e5fdab4147b260f25201385ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idleState:
+    name: 
+  movingState:
+    name: 
   _characterController: {fileID: 3391736401969404661}
-  maxSpeed: 8
-  rotationSpeed: 360
-  accelerationFactor: 5
-  decelerationFactor: 10
-  gravity: -9.8
-  dashingCooldown: 0
-  dashingTime: 0.4
-  dashingSpeed: 14
-  meleeWeapon: {fileID: 7488110871095189399}
-  aimPivot: {fileID: 2534352502983846094}
-  attackCooldownTimer:
-    coolDownAmount: 0.25
-  aimBoundsSphere: {fileID: 872527895314510236}
-  boundsGrowthSpeed: 0.125
-  minRange: {x: 1, y: 1, z: 1}
-  maxRange: {x: 12, y: 1, z: 12}
-  essenceCount: 0
+  maxSpeed: 10
+  _rotationSpeed: 10000
+  _gravity: -9.81
+  _acceleration: 5
+  _deceleration: 10
+  inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!114 &5358006403793944106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,6 +118,28 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &7081651053492378552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302680046843287610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e499c0976657a3348b82fec3df74d73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterController: {fileID: 3391736401969404661}
+  maxSpeed: 10
+  _rotationSpeed: 11000
+  _gravity: -9.81
+  _acceleration: 5
+  _deceleration: 10
+  dashingCooldown: 1.5
+  dashingTime: 0.2
+  dashingSpeed: 7
+  inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!1 &872527895314510236
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,7 +547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35bf3ddacd38a464882b981f20318263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 3711209517092578214}
+  controller: {fileID: 0}
   parentAimer: {fileID: 0}
   rangedDamage: 20
   col: {fileID: 6541453891049477883}
@@ -733,7 +709,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2537add92584a8c42963a94c18e9a254, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.49
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2537add92584a8c42963a94c18e9a254, type: 3}
       propertyPath: m_LocalPosition.z

@@ -1,40 +1,43 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Windows;
-/// <summary>
-/// isometric movement for the player
-/// </summary>
 
+
+/// <summary>
+/// will contain ALL variables from old animation and movement scripts
+/// </summary>
 [RequireComponent(typeof(CharacterController))]
-public class MovementPlayer : MonoBehaviour
+public class MovementSM : StateMachine
 {
- 
+
+    //states
+    [HideInInspector]
+    public PlayerIdle idleState;
+    public PlayerMoving movingState;
+
+    //rigidbody here
     public CharacterController _characterController;
 
+    //speed vars, etc
     [Header("Basic Movement")]
     public float maxSpeed = 10f;
     [SerializeField] private float _rotationSpeed = 180f;
     [SerializeField] private float _gravity = -9.81f;
-    private float _currentSpeed;
+    public float _currentSpeed { get; private set; }
     private Vector3 _velocity;
 
     [Header("Accelleration")]
     [SerializeField] private float _acceleration = 5f;
     [SerializeField] private float _deceleration = 10f;
 
-    [Header("Dashing")]
-    public float dashingCooldown = 1.5f;
-    public float dashingTime = 0.2f;
-    public float dashingSpeed = 7f;
-    private bool _canDash;
-    private bool _isDashing;
-
-    [Header("Input")] 
+    //input
+    [Header("Input")]
     public InputActionAsset inputActions;
     private Vector3 _input;
     private Vector2 _getInput;
     private InputAction _moveInput;
     private InputAction _dashInput;
+
+    //animation goes here too i believe 
 
     private void OnEnable()
     {
@@ -48,17 +51,19 @@ public class MovementPlayer : MonoBehaviour
 
     private void Awake()
     {
+        //states
+        idleState.Init( nameof(idleState),this);
+        movingState.Init(nameof(idleState), this);
+
+        //char controller
         _characterController = GetComponent<CharacterController>();
 
+        //input
         _moveInput = InputSystem.actions.FindAction("Move");
         _dashInput = InputSystem.actions.FindAction("Sprint");
     }
 
-    void Start()
-    {
-        _canDash = true;
-        _isDashing = false;
-    }
+    //all of this may need to be moved to the player moving state:
 
     void FixedUpdate()
     {
@@ -76,8 +81,8 @@ public class MovementPlayer : MonoBehaviour
 
         GatherInput();
         Look();
-        CalculateSpeed();
-        Move();
+        //CalculateSpeed();
+        //Move();
     }
 
     /// <summary>
@@ -102,35 +107,11 @@ public class MovementPlayer : MonoBehaviour
         Quaternion rotation = Quaternion.LookRotation(multipliedMatrix, Vector3.up);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, _rotationSpeed * Time.fixedDeltaTime);
     }
+
     
-    /// <summary>
-    /// speed, acceleration and deceleration
-    /// </summary>
-    private void CalculateSpeed()
+
+    protected override BaseState GetInitialState()
     {
-        if (_input == Vector3.zero && _currentSpeed > 0)
-        {
-            _currentSpeed -= _deceleration * Time.fixedDeltaTime;
-        }
-        else if (_input != Vector3.zero && _currentSpeed < maxSpeed)
-        {
-            _currentSpeed += _acceleration * Time.fixedDeltaTime;
-        }
-
-        _currentSpeed = Mathf.Clamp(_currentSpeed, 0, maxSpeed);
-    }
-
-    //apply speed, move foward and dash
-    private void Move()
-    {
-        if (_isDashing)
-        {
-            _characterController.Move(transform.forward * dashingSpeed * Time.fixedDeltaTime);
-            return;
-        }
-
-        Vector3 moveDirection = transform.forward * _currentSpeed * _input.magnitude * Time.fixedDeltaTime + _velocity;
-
-        _characterController.Move(moveDirection);
+        return idleState;
     }
 }

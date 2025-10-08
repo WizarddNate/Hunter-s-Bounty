@@ -1,18 +1,17 @@
+using System;
 using UnityEngine;
 
+[Serializable]
 public class PlayerIdle : BaseState
 {
     private MovementSM _sm;
 
-    public PlayerIdle(MovementSM stateMachine) : base("Idle", stateMachine) 
-    {
-        _sm = (MovementSM)stateMachine;
-    }
+
 
     public override void Enter()
     {
         base.Enter();
-        //move input = 0
+        _sm = (MovementSM)stateMachine;
     }
 
     public override void UpdateLogic()
@@ -20,9 +19,10 @@ public class PlayerIdle : BaseState
         base.UpdateLogic();
 
         //transition to "moving" state if input != 0
-        if (1 + 1 == 2)
+        if (_sm._currentSpeed != 0)
         {
             stateMachine.ChangeState(((MovementSM)stateMachine).movingState);
+            Debug.Log("Current state: moving!");
         }
 
     }

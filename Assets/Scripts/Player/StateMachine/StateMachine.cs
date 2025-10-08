@@ -29,6 +29,10 @@ public class StateMachine : MonoBehaviour
         if (currentState != null)
         {
             currentState.UpdatePhysics();
+
+            //test string
+            //string content = currentState != null ? currentState.name : "(no current state!)";
+            //Debug.Log("Current state: " + content);
         }
     }
 
@@ -44,13 +48,5 @@ public class StateMachine : MonoBehaviour
     protected virtual BaseState GetInitialState()
     {
         return null;
-    }
-
-    private void OnGUI()
-    {
-        //test string
-        string content = currentState != null ? currentState.name : "(no current state!)";
-
-        GUILayout.Label($"<color = 'black'><size = 40>{content}</size></color>");
     }
 }

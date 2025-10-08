@@ -1,16 +1,16 @@
+using System;
 using UnityEngine;
 
+[Serializable]
 public class PlayerMoving : BaseState
 {
     private MovementSM _sm;
-    public PlayerMoving(MovementSM stateMachine) : base("Moving", stateMachine) 
-    {
-        _sm = (MovementSM)stateMachine;
-    }
+    
 
     public override void Enter()
     {
         base.Enter();
+        _sm = (MovementSM)stateMachine;
     }
 
     public override void UpdateLogic()
@@ -18,9 +18,10 @@ public class PlayerMoving : BaseState
         base.UpdateLogic();
 
         //transition to "idle" state if input = 0
-        if (1 + 1 == 4)
+        if (_sm._currentSpeed == 0)
         {
             stateMachine.ChangeState(_sm.idleState);
+            Debug.Log("Current state: idle!");
         }
     }
 
@@ -28,6 +29,11 @@ public class PlayerMoving : BaseState
     {
         base.UpdatePhysics();
 
-        //movement stuff here
+
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
     }
 }
