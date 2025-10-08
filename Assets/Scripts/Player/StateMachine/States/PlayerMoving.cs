@@ -13,7 +13,7 @@ public class PlayerMoving : BaseState
         base.Enter();
         _sm = (MovementSM)stateMachine;
 
-        Debug.Log("Current state: moving!");
+        Debug.Log("Current movement state: moving!");
     }
 
     public override void UpdateLogic()

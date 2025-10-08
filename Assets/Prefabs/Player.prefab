@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1091889088077898055}
   - component: {fileID: 3391736401969404661}
   - component: {fileID: 944052390225730535}
+  - component: {fileID: 8887350308001289461}
   - component: {fileID: 5358006403793944106}
-  - component: {fileID: 7081651053492378552}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -72,7 +72,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 302680046843287610}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58aabe4e5fdab4147b260f25201385ff, type: 3}
   m_Name: 
@@ -81,13 +81,61 @@ MonoBehaviour:
     name: 
   movingState:
     name: 
+  dashState:
+    name: 
   _characterController: {fileID: 3391736401969404661}
-  maxSpeed: 10
+  maxSpeed: 8
   _rotationSpeed: 10000
   _gravity: -9.81
-  _acceleration: 5
-  _deceleration: 10
+  _currentSpeed: 0
+  _velocity: {x: 0, y: 0, z: 0}
+  _acceleration: 4
+  _deceleration: 8
   inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  _inputXZ: {x: 0, y: 0, z: 0}
+  _getInput: {x: 0, y: 0}
+  _moveInput:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 8d2e9c0c-473c-4cf7-9661-1bb9bccfa0b0
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  _dashInput:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 18074302-ae79-41fe-b010-49fd416f4e36
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+--- !u!114 &8887350308001289461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302680046843287610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7703887b08c211c4094a9f8603d835f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleState:
+    name: 
+  meleeWeapon: {fileID: 0}
+  aimPivot: {fileID: 0}
+  attackCooldownTimer:
+    coolDownAmount: 0
+  aimBoundsSphere: {fileID: 0}
+  boundsGrowthSpeed: 0
+  minRange: {x: 0, y: 0, z: 0}
+  maxRange: {x: 0, y: 0, z: 0}
+  essenceCount: 0
+  inputActions: {fileID: 0}
 --- !u!114 &5358006403793944106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,28 +166,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &7081651053492378552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 302680046843287610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e499c0976657a3348b82fec3df74d73a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _characterController: {fileID: 3391736401969404661}
-  maxSpeed: 10
-  _rotationSpeed: 11000
-  _gravity: -9.81
-  _acceleration: 5
-  _deceleration: 10
-  dashingCooldown: 1.5
-  dashingTime: 0.2
-  dashingSpeed: 7
-  inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!1 &872527895314510236
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,6 +729,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1091889088077898055}
     m_Modifications:
+    - target: {fileID: -9132900131629795433, guid: 2537add92584a8c42963a94c18e9a254, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 146c8e46cc2fbdc41a7dc5a765fbae4e, type: 2}
     - target: {fileID: -8679921383154817045, guid: 2537add92584a8c42963a94c18e9a254, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -743,6 +773,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5706916078060093998, guid: 2537add92584a8c42963a94c18e9a254, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0bab687e64ef14c48b003e6b86efa653, type: 2}
     - target: {fileID: 919132149155446097, guid: 2537add92584a8c42963a94c18e9a254, type: 3}
       propertyPath: m_Name
       value: NoSpecialHunter
