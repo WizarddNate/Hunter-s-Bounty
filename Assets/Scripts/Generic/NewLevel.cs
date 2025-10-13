@@ -22,9 +22,9 @@ public class NewLevel : MonoBehaviour
         {
             if (isRandLevelSelect)
             {
-                var lvlNum = (LevelManager.Level)UnityEngine.Random.Range(0, 1);
+                //var lvlNum = (LevelManager.Level)UnityEngine.Random.Range(0, 1);
 
-                Debug.Log("level num: " + lvlNum);
+                //Debug.Log("level num: " + lvlNum);
 
 
                 //LevelManager.Instance.LoadLevel(LevelManager.Level.lvlNum);

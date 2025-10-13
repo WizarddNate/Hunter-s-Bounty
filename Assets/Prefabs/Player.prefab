@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 944052390225730535}
   - component: {fileID: 8887350308001289461}
   - component: {fileID: 5358006403793944106}
-  - component: {fileID: 630070114270892415}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -78,6 +77,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58aabe4e5fdab4147b260f25201385ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentStateDisplay: 
+  animator: {fileID: 4934746413894499269}
   idleState:
     name: 
   movingState:
@@ -92,6 +93,11 @@ MonoBehaviour:
   _velocity: {x: 0, y: 0, z: 0}
   _acceleration: 4
   _deceleration: 8
+  dashSpeed: 20
+  dashDuration: 0.4
+  dashCooldown: 0.5
+  isDashing: 0
+  canDash: 1
   inputActions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _inputXZ: {x: 0, y: 0, z: 0}
   _getInput: {x: 0, y: 0}
@@ -133,6 +139,11 @@ MonoBehaviour:
   aimPivot: {fileID: 2534352502983846094}
   attackCooldownTimer:
     coolDownAmount: 0.25
+  attackPoint: {fileID: 8060006541545313588}
+  attackRange: 0.5
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 128
   aimBoundsSphere: {fileID: 872527895314510236}
   boundsGrowthSpeed: 2
   minRange: {x: 4, y: 4, z: 4}
@@ -275,18 +286,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &630070114270892415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 302680046843287610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e34724aa998fc247b7b59573fd1a74d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &872527895314510236
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,7 +746,7 @@ GameObject:
   - component: {fileID: 4709702009281519532}
   - component: {fileID: 1505265478911880001}
   m_Layer: 6
-  m_Name: MeleeWeapon
+  m_Name: MeleeAttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

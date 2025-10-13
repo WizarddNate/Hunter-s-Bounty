@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +8,8 @@ public class LevelManager : MonoBehaviour
 
     //loading screen. Probably wont be needed. 
     //[SerializeField] private GameObject _loaderCanvas;
+
+    public List<string> levelsList = new List<string>();
 
     void Awake()
     {
@@ -22,15 +25,10 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public enum Menu
-    {
-        MainMenu = 0
-    }
-    public enum Level 
-    {
-        Level01 = 0,
-        Level02 = 1
-    }
+
+    /// <summary>
+    /// Loading scenes functionality
+    /// </summary>
 
     //load any scene
     public void LoadLevel(string lvlName)
@@ -43,13 +41,13 @@ public class LevelManager : MonoBehaviour
     //load level 1. Good for starting the game or restarting on death
     public void LoadNewGame()
     {
-        SceneManager.LoadScene(Level.Level01.ToString());
+        SceneManager.LoadScene("Level01");
     }
 
     //load main menu. Nice and easy for quit buttons
     public void LoadMainMenu()
     {
-        SceneManager.LoadScene(Menu.MainMenu.ToString());
+        SceneManager.LoadScene("MainMenu");
     }
 
     //load next scene in index.

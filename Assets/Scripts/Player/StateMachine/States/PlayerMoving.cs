@@ -41,8 +41,24 @@ public class PlayerMoving : BaseState
 
         CalculateSpeed();
         Move();
+        Look();
 
     }
+
+    /// <summary>
+    /// determine character's rotation
+    /// </summary>
+    private void Look()
+    {
+        if (_sm._inputXZ == Vector3.zero) return;
+
+        Matrix4x4 isometricMatrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));
+        Vector3 multipliedMatrix = isometricMatrix.MultiplyPoint3x4(_sm._inputXZ);
+
+        Quaternion rotation = Quaternion.LookRotation(multipliedMatrix, Vector3.up);
+        _sm.transform.rotation = Quaternion.RotateTowards(_sm.transform.rotation, rotation, _sm._rotationSpeed * Time.fixedDeltaTime);
+    }
+
     private void CalculateSpeed()
     {
         

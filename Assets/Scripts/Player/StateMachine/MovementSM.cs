@@ -9,7 +9,8 @@ using UnityEngine.InputSystem;
 public class MovementSM : StateMachine
 {
     StateMachine _sm;
-    public string currentString;
+    [SerializeField] string currentStateDisplay;
+    public Animator animator;
 
     //states
     [HideInInspector] public PlayerIdle idleState;
@@ -82,7 +83,7 @@ public class MovementSM : StateMachine
         }
 
         //show current state in inspector
-        currentString = currentState.ToString();
+        currentStateDisplay = currentState.ToString();
     }
 
     void FixedUpdate()
@@ -105,7 +106,7 @@ public class MovementSM : StateMachine
         }
 
         GatherInput();
-        Look();
+        //Look();
     } 
     
     /// <summary>
@@ -115,20 +116,6 @@ public class MovementSM : StateMachine
     {
         _getInput = _moveInput.ReadValue<Vector2>();
         _inputXZ = new Vector3(_getInput.x, 0, _getInput.y);
-    }
-
-    /// <summary>
-    /// determine character's rotation
-    /// </summary>
-    private void Look()
-    {
-        if (_inputXZ == Vector3.zero) return;
-
-        Matrix4x4 isometricMatrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));
-        Vector3 multipliedMatrix = isometricMatrix.MultiplyPoint3x4(_inputXZ);
-
-        Quaternion rotation = Quaternion.LookRotation(multipliedMatrix, Vector3.up);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, _rotationSpeed * Time.fixedDeltaTime);
     }
 
     protected override BaseState GetInitialState()
