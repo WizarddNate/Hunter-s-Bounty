@@ -5,7 +5,7 @@ using UnityEngine;
 /// </summary>
 public class StateMachine : MonoBehaviour
 {
-    BaseState currentState;
+    protected BaseState currentState;
 
     private void Start()
     {
@@ -24,7 +24,7 @@ public class StateMachine : MonoBehaviour
         }
     }
 
-    void LateUpdate()
+    void FixedUpdate()
     {
         if (currentState != null)
         {

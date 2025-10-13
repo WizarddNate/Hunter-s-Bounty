@@ -15,6 +15,10 @@ public class PlayerMeleeAttack : BaseState
         _sm = (ActionsSM)stateMachine;
 
         Debug.Log("Current action state: melee attack!");
+
+        //attackPointObj = GameObject.Find("MeleeAttackPoint");
+        //attackPoint = attackPointObj.GetComponent<Transform>();
+        //enemyLayers = LayerMask.GetMask("Enemy");
     }
 
     public override void UpdateLogic()
@@ -26,13 +30,26 @@ public class PlayerMeleeAttack : BaseState
     {
         base.UpdatePhysics();
 
-        _sm.meleeWeapon.SetActive(true);
+        Attack();
     }
 
-    public override void Exit()
+    void Attack()
     {
-        base.Exit();
+        _sm.meleeWeapon.SetActive(true);
 
+        //play attack animation
+
+        //detect enemies within range of attack
+        Collider[] hitEnemies = Physics.OverlapSphere(_sm.attackPoint.position, _sm.attackRange, _sm.enemyLayers);
+
+        //apply damage to all detected enemies
+        foreach (Collider enemy in hitEnemies)
+        {
+            Debug.Log("enemy hit: " + enemy.name);
+        }
+
+        
+        //back to idle
         _sm.meleeWeapon.SetActive(false);
 
         stateMachine.ChangeState(((ActionsSM)stateMachine).idleActionState);

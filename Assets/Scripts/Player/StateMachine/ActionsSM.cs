@@ -19,6 +19,15 @@ public class ActionsSM : StateMachine
     private bool isRanged;
     public bool fire { get; set; }
 
+    [Header("Melee Attack vars")]
+    //center of attack
+    public Transform attackPoint;
+
+    //range from center
+    public float attackRange = 0.5f;
+
+    public LayerMask enemyLayers;
+
     [Header("Ranged Attack Bounds")]
     public GameObject aimBoundsSphere;
     public float boundsGrowthSpeed;

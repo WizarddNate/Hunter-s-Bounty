@@ -8,6 +8,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class MovementSM : StateMachine
 {
+    StateMachine _sm;
+    public string currentString;
 
     //states
     [HideInInspector] public PlayerIdle idleState;
@@ -24,10 +26,15 @@ public class MovementSM : StateMachine
     [SerializeField] public float _gravity = -9.81f;
     [HideInInspector] public float _currentSpeed;
     [HideInInspector] public Vector3 _velocity;
-
-    [Header("Accelleration")]
     [SerializeField] public float _acceleration = 5f;
     [SerializeField] public float _deceleration = 10f;
+
+    [Header("Dashing")]
+    public float dashSpeed = 20f;
+    public float dashDuration = 0.8f;
+    public float dashCooldown = 0.5f;
+    [HideInInspector] public bool isDashing;
+    [HideInInspector] public bool canDash = true;
 
     //input
     [Header("Input")]
@@ -38,7 +45,6 @@ public class MovementSM : StateMachine
     [HideInInspector] public InputAction _moveInput;
     [HideInInspector] public InputAction _dashInput;
 
-    
 
     //animation goes here too i believe 
 
@@ -54,6 +60,7 @@ public class MovementSM : StateMachine
 
     private void Awake()
     {
+
         //states
         idleState.Init(nameof(idleState),this);
         movingState.Init(nameof(movingState), this);
@@ -64,13 +71,27 @@ public class MovementSM : StateMachine
 
         //input
         _moveInput = InputSystem.actions.FindAction("Move");
-        _dashInput = InputSystem.actions.FindAction("Sprint");
+        _dashInput = InputSystem.actions.FindAction("Dash");
     }
 
-    //all of this may need to be moved to the player moving state:
+    void Update()
+    {
+        if (currentState != null)
+        {
+            currentState.UpdateLogic();
+        }
+
+        //show current state in inspector
+        currentString = currentState.ToString();
+    }
 
     void FixedUpdate()
     {
+        if (currentState != null)
+        {
+            currentState.UpdatePhysics();
+        }
+
         bool isGrounded = _characterController.isGrounded;
 
         if (isGrounded && _velocity.y < 0)
@@ -85,8 +106,8 @@ public class MovementSM : StateMachine
 
         GatherInput();
         Look();
-    }
-
+    } 
+    
     /// <summary>
     /// input manager business
     /// </summary>

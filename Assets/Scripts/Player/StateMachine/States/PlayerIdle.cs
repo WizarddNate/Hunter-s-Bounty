@@ -13,7 +13,8 @@ public class PlayerIdle : BaseState
         base.Enter();
         _sm = (MovementSM)stateMachine;
 
-        _sm._currentSpeed = 0;
+        //_sm._currentSpeed = 0;
+        _sm.canDash = true; //remove this once dash cooldown is made
         Debug.Log("Current movement state: idle!");
     }
 
@@ -27,5 +28,21 @@ public class PlayerIdle : BaseState
             stateMachine.ChangeState(((MovementSM)stateMachine).movingState);
         }
 
+        //transition to "dash" state if input is pressed
+        if (_sm._dashInput.IsPressed() && _sm.canDash)
+        {
+            stateMachine.ChangeState(((MovementSM)stateMachine).dashState);
+        }
+    }
+
+    public override void UpdatePhysics()
+    {
+        base.UpdatePhysics();
+
+        //decrease speed if still moving
+        if (_sm._inputXZ == Vector3.zero && _sm._currentSpeed > 0) //decellerate
+        {
+            _sm._currentSpeed -= _sm._deceleration * Time.deltaTime;
+        }
     }
 }

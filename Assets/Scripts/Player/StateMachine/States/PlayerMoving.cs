@@ -12,6 +12,7 @@ public class PlayerMoving : BaseState
     {
         base.Enter();
         _sm = (MovementSM)stateMachine;
+        _sm.canDash = true; //remove this once dash cooldown is made
 
         Debug.Log("Current movement state: moving!");
     }
@@ -25,6 +26,13 @@ public class PlayerMoving : BaseState
         {
             stateMachine.ChangeState(_sm.idleState);
         }
+
+        //transition to "dash" state if input is pressed
+        if (_sm._dashInput.IsPressed() && _sm.canDash)
+        {
+            stateMachine.ChangeState(((MovementSM)stateMachine).dashState);
+        }
+
     }
 
     public override void UpdatePhysics()
@@ -53,7 +61,6 @@ public class PlayerMoving : BaseState
     //apply speed, move foward and dash
     private void Move()
     {
-
         Vector3 moveDirection = _sm.transform.forward * _sm._currentSpeed * _sm._inputXZ.magnitude * Time.deltaTime + _sm._velocity;
 
         _sm._characterController.Move(moveDirection);
@@ -62,5 +69,7 @@ public class PlayerMoving : BaseState
     public override void Exit()
     {
         base.Exit();
+
+        _sm.canDash = true;
     }
 }

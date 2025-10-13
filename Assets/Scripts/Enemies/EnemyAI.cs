@@ -147,7 +147,7 @@ public class EnemyAI : MonoBehaviour//, IEffectable
             if (!isRangedEnemy)
             {
                 // deal damage to player
-                playerHealth.TakeDamage(damage);
+                //playerHealth.TakeDamage(damage);
             }
             else {
                 Instantiate(bullet, bulletSpawnPoint.transform.position, Quaternion.identity);
