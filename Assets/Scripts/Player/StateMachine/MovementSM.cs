@@ -80,10 +80,12 @@ public class MovementSM : StateMachine
         if (currentState != null)
         {
             currentState.UpdateLogic();
+            currentStateDisplay = currentState.ToString();
         }
-
-        //show current state in inspector
-        currentStateDisplay = currentState.ToString();
+        else
+        {
+            currentState = idleState; // fail safe to keep state from being null
+        }
     }
 
     void FixedUpdate()
