@@ -10,7 +10,7 @@ public class GenericAggroEnemySM : StateMachine
 
     public Transform player;
 
-    public LayerMask whatIsGround, whatIsPlayer;
+    public LayerMask whatIsPlayer;
 
     //States 
     public Patrolling patrollingState;
@@ -22,11 +22,6 @@ public class GenericAggroEnemySM : StateMachine
     public float sightRange;
     public float attackRange;
     bool playerInSightRange, playerInAttackRange;
-
-    [Header("Attacking")]
-    //public EnemyAttack attack;
-    public float timeBetweenAttacks;
-    bool alreadyAttacked;
 
     /*[Header("Health")]
     public int maxhealth;

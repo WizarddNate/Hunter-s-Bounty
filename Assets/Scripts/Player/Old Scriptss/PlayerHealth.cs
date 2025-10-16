@@ -30,7 +30,7 @@ public class PlayerHealth : MonoBehaviour
     private int essenceMin = 5;
     private bool _canHeal;
     private bool _isHealing;
-    private InputAction heal;
+    //private InputAction heal;
 
     private InputSystem_Actions _playerInputActions;
 

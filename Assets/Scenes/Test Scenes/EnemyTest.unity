@@ -942,18 +942,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 1395197751}
   player: {fileID: 0}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 8
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
+  patrollingState:
+    name: 
+    transform: {fileID: 1395197750}
+    agent: {fileID: 1395197751}
+    walkPoint: {x: 5, y: 0, z: 5}
+    walkPointRange: 3
+    whatIsGround:
+      serializedVersion: 2
+      m_Bits: 8
+  chasingState:
+    name: 
+  attackingState:
+    name: 
+    timeBetweenAttacks: 0
   currentStateDisplay: 
   sightRange: 10
   attackRange: 2
-  walkPoint: {x: 2, y: 0, z: 2}
-  walkPointRange: 4
-  timeBetweenAttacks: 0
 --- !u!65 &1395197747
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1037,7 +1045,7 @@ Transform:
   m_GameObject: {fileID: 1395197745}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.892238, y: -0.84, z: 2.3446755}
+  m_LocalPosition: {x: -5.48, y: -0.84, z: 2.3446755}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -4,13 +4,26 @@ using UnityEngine;
 [Serializable]
 public class Attacking : BaseState
 {
-    private GenericAggroEnemySM _sm;
+    [Header("Attacking")]
+    //public EnemyAttack attack;
+    public float timeBetweenAttacks;
+    bool alreadyAttacked;
 
     public override void Enter()
     {
         base.Enter();
-        _sm = (GenericAggroEnemySM)stateMachine;
+        
+    }
 
-        Debug.Log("enemy is attacking");
+    public override void UpdateLogic()
+    {
+        base.UpdateLogic();
+
+
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
     }
 }
