@@ -172,11 +172,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 30.5, y: 5, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &68956880 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 302680046843287610, guid: 85c5b3944d6e9f347ac2728148b4e2a3, type: 3}
-  m_PrefabInstance: {fileID: 267396133}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &164965648
 GameObject:
   m_ObjectHideFlags: 0
@@ -1392,7 +1387,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1395197750}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 667765524}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1898836963
 GameObject:
