@@ -19,7 +19,7 @@ public class Patrolling : BaseState
     {
         base.Enter();
 
-        Debug.Log("enemy is searching for player");
+        //Debug.Log("enemy is searching for player");
     }
 
     public override void UpdateLogic()

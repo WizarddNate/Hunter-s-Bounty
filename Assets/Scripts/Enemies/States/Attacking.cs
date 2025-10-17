@@ -9,6 +9,10 @@ public class Attacking : BaseState
     public float timeBetweenAttacks;
     bool alreadyAttacked;
 
+    [Header("Damage")]
+    public int damage;
+    public PlayerHealth playerHealth;
+
     public override void Enter()
     {
         base.Enter();
@@ -19,7 +23,10 @@ public class Attacking : BaseState
     {
         base.UpdateLogic();
 
-
+        if (!alreadyAttacked)
+        {
+            playerHealth.TakeDamage(damage);
+        }
     }
 
     public override void Exit()

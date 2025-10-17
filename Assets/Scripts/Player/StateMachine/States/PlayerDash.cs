@@ -23,6 +23,7 @@ public class PlayerDash : BaseState
     public override void UpdateLogic()
     {
         base.UpdateLogic();
+
     }
 
     public override void UpdatePhysics()
@@ -32,6 +33,9 @@ public class PlayerDash : BaseState
 
         if (Time.time < startTime + _sm.dashDuration)
         {
+            //disable collider
+            _sm._characterController.detectCollisions = false;
+
             Vector3 moveDirection = _sm.transform.forward * _sm.dashSpeed * Time.fixedDeltaTime + _sm._velocity;
 
             _sm._characterController.Move(moveDirection);
@@ -39,7 +43,8 @@ public class PlayerDash : BaseState
             return;
         }
 
-        Debug.Log("Finish dash!");
+        //Finish dash!
+        _sm._characterController.detectCollisions = true;
 
         //return to previous state
         if (_sm._inputXZ != Vector3.zero)
