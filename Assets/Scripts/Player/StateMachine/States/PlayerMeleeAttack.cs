@@ -35,7 +35,7 @@ public class PlayerMeleeAttack : BaseState
 
     void Attack()
     {
-        _sm.meleeWeapon.SetActive(true);
+        //_sm.meleeWeapon.SetActive(true);
 
         //play attack animation
 

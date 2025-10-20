@@ -16,6 +16,7 @@ public class GenericAggroEnemySM : StateMachine
     public Patrolling patrollingState;
     public Chasing chasingState;
     public Attacking attackingState;
+    public TakingDamage takingDamageState;
 
     [Header("State Control")]
     [SerializeField] string currentStateDisplay;
@@ -23,10 +24,10 @@ public class GenericAggroEnemySM : StateMachine
     public float attackRange;
     bool playerInSightRange, playerInAttackRange;
 
-    /*[Header("Health")]
+    [Header("Health")]
     public int maxhealth;
     public int health;
-    bool isDying; */
+    bool isDying;
 
     /* [Header("Damage")]
     public int damage;
@@ -55,7 +56,10 @@ public class GenericAggroEnemySM : StateMachine
         //get states
         patrollingState.Init(nameof(patrollingState), this);
         chasingState.Init(nameof(chasingState), this);
-        attackingState.Init(nameof(attackingState), this); 
+        attackingState.Init(nameof(attackingState), this);
+        takingDamageState.Init(nameof(takingDamageState), this);
+
+        //TakeDamage();
     }
 
     public void Start()
@@ -100,5 +104,10 @@ public class GenericAggroEnemySM : StateMachine
     protected override BaseState GetInitialState()
     {
         return patrollingState;
+    }
+
+    public void TakeDamage()
+    {
+        ChangeState(takingDamageState);
     }
 }

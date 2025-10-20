@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3391736401969404661}
   - component: {fileID: 944052390225730535}
   - component: {fileID: 8887350308001289461}
+  - component: {fileID: 1462059200143925128}
   - component: {fileID: 5358006403793944106}
   m_Layer: 6
   m_Name: Player
@@ -168,6 +169,22 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+--- !u!114 &1462059200143925128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302680046843287610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6781fdea23e1df4482f8c19f531a4c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  invincibilityTimer:
+    coolDownAmount: 0.5
+  inputActions: {fileID: 0}
 --- !u!114 &5358006403793944106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -694,7 +711,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
-  parentAimer: {fileID: 0}
+  parentAimer: {fileID: 2534352502983846094}
   rangedDamage: 20
   col: {fileID: 6541453891049477883}
 --- !u!114 &7233134659792643903
