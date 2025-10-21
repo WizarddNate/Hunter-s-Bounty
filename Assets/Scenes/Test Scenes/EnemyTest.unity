@@ -1736,7 +1736,9 @@ MonoBehaviour:
     player: {fileID: 1677714612}
   attackingState:
     name: 
-    timeBetweenAttacks: 0.5
+    transform: {fileID: 1395197750}
+    agent: {fileID: 1395197751}
+    attackChargeTime: 0.6
     damage: 1
     playerHealth: {fileID: 2037778742}
   takingDamageState:

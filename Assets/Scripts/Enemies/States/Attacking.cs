@@ -1,13 +1,17 @@
 using System;
 using UnityEngine;
+using UnityEngine.AI;
 
 [Serializable]
 public class Attacking : BaseState
 {
     [Header("Attacking")]
-    //public EnemyAttack attack;
-    public float timeBetweenAttacks;
-    bool alreadyAttacked;
+    public float attackChargeTime = 0.6f;
+    float attackStartTime = 0;
+    bool isAttacking;
+    
+    
+
 
     [Header("Damage")]
     public int damage;
@@ -17,20 +21,38 @@ public class Attacking : BaseState
     {
         base.Enter();
         
+        if (attackStartTime == 0)
+        {
+            attackStartTime = Time.time;
+        }
+        isAttacking = false;
     }
 
     public override void UpdateLogic()
     {
         base.UpdateLogic();
 
-        if (!alreadyAttacked)
+        if (Time.time < attackStartTime + attackChargeTime)
         {
+            isAttacking = false;
+        }
+        else
+        {
+            isAttacking = true;
+        }
+
+        if(isAttacking)
+        {
+            //attack!
             playerHealth.TakeDamage(damage);
         }
+        
     }
 
     public override void Exit()
     {
         base.Exit();
+
+        isAttacking = false;
     }
 }
