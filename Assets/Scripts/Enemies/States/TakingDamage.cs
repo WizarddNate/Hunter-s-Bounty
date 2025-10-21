@@ -1,23 +1,15 @@
+using System;
 using UnityEngine;
 
-[SerializeField]
+[Serializable]
 public class TakingDamage : BaseState
 {
-    StateMachine sm;
-
-    [SerializeField] public GameObject targetGameObject;
-
+    
     public override void Enter()
     {
         base.Enter();
-        if (targetGameObject != null)
-        {
-            StateMachine component = targetGameObject.GetComponent<StateMachine>();
-            if (component != null)
-            {
-                Debug.Log("Got state machine: " + component);
-            }
-        }
+        
+
     }
 
     public override void UpdateLogic()

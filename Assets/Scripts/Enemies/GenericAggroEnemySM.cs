@@ -12,11 +12,12 @@ public class GenericAggroEnemySM : StateMachine
 
     public LayerMask whatIsPlayer;
 
-    //States 
-    public Patrolling patrollingState;
-    public Chasing chasingState;
-    public Attacking attackingState;
-    public TakingDamage takingDamageState;
+    
+
+    [Header("Health")]
+    public int maxhealth;
+    public int health;
+    bool isDying;
 
     [Header("State Control")]
     [SerializeField] string currentStateDisplay;
@@ -24,10 +25,11 @@ public class GenericAggroEnemySM : StateMachine
     public float attackRange;
     bool playerInSightRange, playerInAttackRange;
 
-    [Header("Health")]
-    public int maxhealth;
-    public int health;
-    bool isDying;
+    //States 
+    public Patrolling patrollingState;
+    public Chasing chasingState;
+    public Attacking attackingState;
+    public TakingDamage takingDamageState;
 
     /* [Header("Damage")]
     public int damage;
@@ -65,7 +67,7 @@ public class GenericAggroEnemySM : StateMachine
     public void Start()
     {
         //animator = gameObject.GetComponentInChildren<Animator>();
-        //health = maxhealth;
+        health = maxhealth;
     }
 
     private void Update()

@@ -34,7 +34,7 @@ public class PlayerDash : BaseState
         if (Time.time < startTime + _sm.dashDuration)
         {
             //disable collider
-            _sm._characterController.detectCollisions = false;
+            _sm._characterController.detectCollisions = false; //temp solution as you can only dash through other rigidbodies, not all colliders
 
             Vector3 moveDirection = _sm.transform.forward * _sm.dashSpeed * Time.fixedDeltaTime + _sm._velocity;
 

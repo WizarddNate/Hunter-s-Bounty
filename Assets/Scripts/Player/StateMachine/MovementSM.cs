@@ -109,8 +109,18 @@ public class MovementSM : StateMachine
 
         GatherInput();
         //Look();
-    } 
-    
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("I hit something!");
+
+        if (currentState == dashState)
+        {
+            Debug.Log("I hit something while dashing!");
+        }
+    }
+
     /// <summary>
     /// input manager business
     /// </summary>

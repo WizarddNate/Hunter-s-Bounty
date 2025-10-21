@@ -8,15 +8,15 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     [Header("Health vars")]
-    public int health { get; set; }
-    public int maxHealth;
+    public float health { get; set; }
+    public float maxHealth;
     //public float damageCooldown;
     private bool isDying;
 
     [SerializeField] protected CooldownTimer invincibilityTimer;
 
-    //[Header("UI")]
-    //public TMP_Text healthText;
+    [Header("UI")]
+    [SerializeField] private PlayerHPBar _healthBar;
 
     [Header("Animation")]
     MeshRenderer meshRenderer;
@@ -63,9 +63,7 @@ public class PlayerHealth : MonoBehaviour
         isDying = false;
         health = maxHealth;
 
-        //flash animation
-        meshRenderer = GetComponentInChildren<MeshRenderer>();
-        originColor = meshRenderer.material.color;
+        _healthBar.UpdateHealthbar(maxHealth, health);
     }
     public void TakeDamage(int damageAmount)
     {
@@ -74,30 +72,14 @@ public class PlayerHealth : MonoBehaviour
 
         invincibilityTimer.StartCooldown();
 
-        FlashStart();
         health -= damageAmount;
+
+        _healthBar.UpdateHealthbar(maxHealth, health);
 
         if (health <= 0)
         {
             Die();
         }
-    }
-
-    /*    private void Awake()
-        {
-            _playerInputActions = new InputSystem_Actions();
-            _characterController = GetComponent<CharacterController>();
-        } */
-
-    void FlashStart()
-    {
-        meshRenderer.material.color = Color.red;
-        Invoke("FlashEnd", flashTime);
-    }
-
-    void FlashEnd()
-    {
-        meshRenderer.material.color = originColor;
     }
 
     public void Die()
