@@ -8,7 +8,7 @@ using UnityEngine;
 public class CooldownTimer
 {
     //amount of time it takes to cool down
-    public float coolDownAmount;
+    public float coolDownAmountTime;
 
     //the time that the cooldown is completed 
     private float m_coolDownCompleteTime;
@@ -18,8 +18,6 @@ public class CooldownTimer
 
     public void StartCooldown()
     {
-        m_coolDownCompleteTime = Time.time + coolDownAmount;
+        m_coolDownCompleteTime = Time.time + coolDownAmountTime;
     }
-
-    //commit for game jam
 }

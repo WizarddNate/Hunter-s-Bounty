@@ -7,13 +7,14 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class ActionsSM : StateMachine
 {
-    //states
+    [Header("State Control")]
+    [SerializeField] string currentStateDisplay;
     [HideInInspector] public PlayerActionIdle idleActionState;
     [HideInInspector] public PlayerMeleeAttack meleeAttackState;
     [HideInInspector] public PlayerRangedAttack rangedAttackState;
 
     [Header("Attacking")]
-    public GameObject meleeWeapon;
+    public Collider meleeWeaponCol;
     public GameObject aimPivot;
     [SerializeField] protected CooldownTimer attackCooldownTimer;
     private bool isRanged;
@@ -66,9 +67,30 @@ public class ActionsSM : StateMachine
         _meleeInput = InputSystem.actions.FindAction("MeleeAttack");
         _rangedInput = InputSystem.actions.FindAction("RangedAttack");
     }
+      
+    public void Start()
+    {
+        meleeWeaponCol.enabled = false;
+    }
 
     private void Update()
     {
+        if (currentState != null)
+        {
+            currentState.UpdateLogic();
+            currentStateDisplay = currentState.ToString();
+        }
+        else
+        {
+            currentState = idleActionState; // fail safe to keep state from being null
+        }
+
+        if (_meleeInput.IsPressed() && attackCooldownTimer.CoolDownComplete)
+        {
+            attackCooldownTimer.StartCooldown();
+            ChangeState(meleeAttackState);
+        }
+
         aimBoundsSphere.transform.localScale = new Vector3(currentRange.x, transform.localScale.y, currentRange.z);
     }
 

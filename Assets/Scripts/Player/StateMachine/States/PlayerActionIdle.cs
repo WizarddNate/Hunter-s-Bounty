@@ -22,10 +22,5 @@ public class PlayerActionIdle : BaseState
     public override void UpdatePhysics()
     {
         base.UpdatePhysics();
-
-        if (_sm._meleeInput.IsPressed())
-        {
-            stateMachine.ChangeState(((ActionsSM)stateMachine).meleeAttackState);
-        }
     }
 }

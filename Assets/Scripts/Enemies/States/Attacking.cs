@@ -6,12 +6,10 @@ using UnityEngine.AI;
 public class Attacking : BaseState
 {
     [Header("Attacking")]
-    public float attackChargeTime = 0.6f;
+    public float attackChargeTime = 0.8f;
     float attackStartTime = 0;
     bool isAttacking;
     
-    
-
 
     [Header("Damage")]
     public int damage;

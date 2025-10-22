@@ -14,7 +14,7 @@ public class PlayerIdle : BaseState
 
         //_sm._currentSpeed = 0;
         _sm.canDash = true; //remove this once dash cooldown is made
-        Debug.Log("Current movement state: idle!");
+        //Debug.Log("Current movement state: idle!");
     }
 
     public override void UpdateLogic()

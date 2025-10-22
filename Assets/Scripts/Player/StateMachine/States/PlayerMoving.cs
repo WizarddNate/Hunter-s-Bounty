@@ -14,7 +14,7 @@ public class PlayerMoving : BaseState
         _sm = (MovementSM)stateMachine;
         _sm.canDash = true; //remove this once dash cooldown is made
 
-        Debug.Log("Current movement state: moving!");
+        //Debug.Log("Current movement state: moving!");
     }
 
     public override void UpdateLogic()

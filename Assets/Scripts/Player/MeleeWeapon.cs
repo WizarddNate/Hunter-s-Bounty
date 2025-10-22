@@ -9,7 +9,7 @@ public class MeleeWeapon : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log("Object hit!");
-        if (other.gameObject.TryGetComponent<EnemyAI>(out EnemyAI enemyComponent))
+        if (other.gameObject.TryGetComponent<UniversalEnemyData>(out UniversalEnemyData enemyComponent))
         {
             //Debug.Log("Enemy hit!");
             enemyComponent.TakeDamage(meleeDamage);

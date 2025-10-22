@@ -12,13 +12,6 @@ public class GenericAggroEnemySM : StateMachine
 
     public LayerMask whatIsPlayer;
 
-    
-
-    [Header("Health")]
-    public int maxhealth;
-    public int health;
-    bool isDying;
-
     [Header("State Control")]
     [SerializeField] string currentStateDisplay;
     public float sightRange;
@@ -67,7 +60,6 @@ public class GenericAggroEnemySM : StateMachine
     public void Start()
     {
         //animator = gameObject.GetComponentInChildren<Animator>();
-        health = maxhealth;
     }
 
     private void Update()
