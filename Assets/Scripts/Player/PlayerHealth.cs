@@ -17,6 +17,10 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private PlayerHPBar _healthBar;
+    public GameObject PopupTextPrefab;
+    public float textDistance = 4f;
+    public float textSpeed = 1f;
+
 
     [Header("Animation")]
     MeshRenderer meshRenderer;
@@ -74,12 +78,39 @@ public class PlayerHealth : MonoBehaviour
 
         health -= damageAmount;
 
-        _healthBar.UpdateHealthbar(maxHealth, health);
+        //popup text?
+        SpawnText(damageAmount.ToString());
 
+        //hp bar
+        _healthBar.UpdateHealthbar(maxHealth, health);
+        
+        //die
         if (health <= 0)
         {
             Die();
         }
+    }
+
+    public void SpawnText(string text)
+    {
+        GameObject spawnedText = Instantiate(PopupTextPrefab, gameObject.transform);
+        spawnedText.transform.position = Vector3.zero;
+        spawnedText.GetComponent<TextDamagePopup>().SetupText(text);
+        StartCoroutine(Move(spawnedText));
+    }
+
+    //animate the spawned damage text
+    public IEnumerator Move(GameObject _textObj)
+    {
+        float targetY = _textObj.transform.position.y + (textDistance * Random.Range(0.3f, 1.5f));
+
+        while (_textObj.transform.position.y < targetY)
+        {
+            _textObj.transform.position += Vector3.up * (textSpeed * Random.Range(3f, 5f)) * Time.deltaTime;
+            yield return null;
+        }
+
+        Destroy(_textObj);
     }
 
     public void Die()

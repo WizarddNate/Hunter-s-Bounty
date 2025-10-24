@@ -19,6 +19,6 @@ public class Chasing : BaseState
     {
         base.UpdateLogic();
 
-        agent.SetDestination(player.position - new Vector3(1, 0, 1));
+        agent.SetDestination(player.position);
     }
 }
