@@ -11,9 +11,14 @@ public class MeleeWeapon : MonoBehaviour
         //Debug.Log("Object hit!");
         if (other.gameObject.TryGetComponent<UniversalEnemyData>(out UniversalEnemyData enemyComponent))
         {
-            //Debug.Log("Enemy hit!");
-            enemyComponent.TakeDamage(meleeDamage);
-            //MeleeAttackEnemy();
+            //knockback position
+            Vector3 knockbackDirection = transform.position - other.transform.position;
+            Debug.Log("Knockback: " + knockbackDirection);
+
+            //Apply damage
+            enemyComponent.TakeDamage(meleeDamage, knockbackDirection);
+
+
         }
     }
 }

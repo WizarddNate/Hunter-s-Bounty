@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2151209439719408158}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.66, y: -0.84, z: 7.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -156,6 +156,8 @@ MonoBehaviour:
   PopupTextPrefab: {fileID: 8732827773284129343, guid: 27354802dc6580345885e13cfb346c57, type: 3}
   textDistance: 4
   textSpeed: 1
+  knockbackForce: 1
+  _knockbackDuration: 0.2
 --- !u!114 &1633201897264642440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,8 +182,7 @@ MonoBehaviour:
     name: 
     transform: {fileID: 4052107117634441691}
     agent: {fileID: 421584424894630293}
-    walkPoint: {x: 5, y: 0, z: 5}
-    walkPointRange: 3
+    walkPointRange: 8
     whatIsGround:
       serializedVersion: 2
       m_Bits: 8
@@ -192,7 +193,7 @@ MonoBehaviour:
   attackingState:
     name: 
     attackChargeTime: 0.6
-    damage: 0
+    damage: 1
     playerHealth: {fileID: 0}
   takingDamageState:
     name: 

@@ -10,8 +10,8 @@ public class Patrolling : BaseState
     public NavMeshAgent agent;
 
     [Header("Patrolling")]
-    public Vector3 walkPoint;
     public float walkPointRange;
+    Vector3 walkPoint;
     bool walkPointIsSet;
     public LayerMask whatIsGround;
 

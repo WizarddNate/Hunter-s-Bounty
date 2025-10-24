@@ -17,6 +17,9 @@ public class Attacking : BaseState
 
     public override void Enter()
     {
+        GameObject _player = GameObject.FindWithTag("Player");
+        playerHealth = _player.GetComponent<PlayerHealth>();
+
         base.Enter();
         
         if (attackStartTime == 0)

@@ -156,6 +156,8 @@ MonoBehaviour:
   PopupTextPrefab: {fileID: 8732827773284129343, guid: 27354802dc6580345885e13cfb346c57, type: 3}
   textDistance: 4
   textSpeed: 1
+  knockbackForce: 0.2
+  _knockbackDuration: 0.2
 --- !u!114 &4767574844999746840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,8 +182,7 @@ MonoBehaviour:
     name: 
     transform: {fileID: 3300380335988558499}
     agent: {fileID: 6539830000590347678}
-    walkPoint: {x: 5, y: 0, z: 5}
-    walkPointRange: 3
+    walkPointRange: 12
     whatIsGround:
       serializedVersion: 2
       m_Bits: 8
@@ -192,7 +193,7 @@ MonoBehaviour:
   attackingState:
     name: 
     attackChargeTime: 0.6
-    damage: 0
+    damage: 1
     playerHealth: {fileID: 0}
   takingDamageState:
     name: 
