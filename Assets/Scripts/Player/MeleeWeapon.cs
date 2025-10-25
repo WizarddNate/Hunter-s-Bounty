@@ -13,7 +13,6 @@ public class MeleeWeapon : MonoBehaviour
         {
             //knockback position
             Vector3 knockbackDirection = transform.position - other.transform.position;
-            Debug.Log("Knockback: " + knockbackDirection);
 
             //Apply damage
             enemyComponent.TakeDamage(meleeDamage, knockbackDirection);

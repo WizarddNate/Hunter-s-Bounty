@@ -4,7 +4,7 @@ using System;
 public class Timer : MonoBehaviour
 {
 
-    float currentTime;
+    public float currentTime;
 
     public TextMeshProUGUI timerText;
 

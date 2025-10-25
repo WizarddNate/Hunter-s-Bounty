@@ -20,7 +20,8 @@ public class PlayerHealth : MonoBehaviour
     public GameObject PopupTextPrefab;
     public float textDistance = 4f;
     public float textSpeed = 1f;
-
+    public GameObject deathMenu;
+    private DeathScreen _deathMenuScript;
 
     [Header("Animation")]
     MeshRenderer meshRenderer;
@@ -68,6 +69,9 @@ public class PlayerHealth : MonoBehaviour
         health = maxHealth;
 
         _healthBar.UpdateHealthbar(maxHealth, health);
+        deathMenu.SetActive(false);
+
+        _deathMenuScript = deathMenu.GetComponent<DeathScreen>();
     }
     public void TakeDamage(int damageAmount)
     {
@@ -116,6 +120,11 @@ public class PlayerHealth : MonoBehaviour
     public void Die()
     {
         isDying = true;
+
+        deathMenu.SetActive(true);
+        _deathMenuScript.SetFinalTime();
+
+
         Debug.Log("dead");
         //DeathMenuManager.instance.GameOver();
         //gameObject.SetActive(false);

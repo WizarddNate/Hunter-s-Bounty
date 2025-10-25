@@ -4,7 +4,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public GameObject player;
+    public GameObject deathscreen;
 
     public void Awake()
     {
@@ -18,17 +18,18 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject); // Make the GameManager persistent
 
+        
         //find player and save them
-        if (player == null)
+        if (deathscreen == null)
         {
-            player = GameObject.FindWithTag("Player");
+            deathscreen = GameObject.Find("DeathScreen");
         }
         
-        if (player != null) 
+        if (deathscreen != null) 
         {
-            DontDestroyOnLoad(player);
-            Debug.Log("player protected");
-        }
+            DontDestroyOnLoad(deathscreen);
+            Debug.Log("deathscreen");
+        } 
     }
 }
 
