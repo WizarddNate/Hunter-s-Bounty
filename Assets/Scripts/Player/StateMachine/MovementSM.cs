@@ -62,6 +62,9 @@ public class MovementSM : StateMachine
     private void Awake()
     {
 
+        //get animatior
+        animator = GetComponentInChildren<Animator>();
+
         //states
         idleState.Init(nameof(idleState),this);
         movingState.Init(nameof(movingState), this);
@@ -85,6 +88,21 @@ public class MovementSM : StateMachine
         else
         {
             currentState = idleState; // fail safe to keep state from being null
+        }
+
+        //state handler
+        if (_inputXZ == Vector3.zero && !isDashing) //transition to "idle" state if input = 0
+        {
+            ChangeState(idleState);
+        }
+        if (_inputXZ != Vector3.zero && !isDashing) //transition to "moving" if input != 0
+        {
+            ChangeState(movingState);
+        }
+        if (_dashInput.IsPressed() && canDash) //transition to "dash" state if input is pressed
+        {
+            ChangeState(dashState);
+            isDashing = true;
         }
     }
 

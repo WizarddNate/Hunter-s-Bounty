@@ -12,26 +12,16 @@ public class PlayerIdle : BaseState
         base.Enter();
         _sm = (MovementSM)stateMachine;
 
-        //_sm._currentSpeed = 0;
         _sm.canDash = true; //remove this once dash cooldown is made
         //Debug.Log("Current movement state: idle!");
+
+        //change animation
+        _sm.animator.Play("Move");
     }
 
     public override void UpdateLogic()
     {
         base.UpdateLogic();
-
-        //transition to "moving" state if input != 0
-        if (_sm._inputXZ != Vector3.zero)
-        {
-            stateMachine.ChangeState(((MovementSM)stateMachine).movingState);
-        }
-
-        //transition to "dash" state if input is pressed
-        if (_sm._dashInput.IsPressed() && _sm.canDash)
-        {
-            stateMachine.ChangeState(((MovementSM)stateMachine).dashState);
-        }
     }
 
     public override void UpdatePhysics()
@@ -59,5 +49,10 @@ public class PlayerIdle : BaseState
 
         Quaternion rotation = Quaternion.LookRotation(multipliedMatrix, Vector3.up);
         _sm.transform.rotation = Quaternion.RotateTowards(_sm.transform.rotation, rotation, _sm._rotationSpeed * Time.fixedDeltaTime);
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
     }
 }

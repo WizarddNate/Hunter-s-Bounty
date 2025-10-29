@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class ActionsSM : StateMachine
 {
+    public Animator animator;
+
     [Header("State Control")]
     [SerializeField] string currentStateDisplay;
     [HideInInspector] public PlayerActionIdle idleActionState;
@@ -23,18 +25,8 @@ public class ActionsSM : StateMachine
     [Header("Melee Attack vars")]
     //center of attack
     public Transform attackPoint;
-
-    //range from center
-    public float attackRange = 0.5f;
-
     public LayerMask enemyLayers;
 
-    [Header("Ranged Attack Bounds")]
-    public GameObject aimBoundsSphere;
-    public float boundsGrowthSpeed;
-    public Vector3 minRange;
-    public Vector3 maxRange;
-    private Vector3 currentRange;
 
     [Header("Pickups")]
     public int essenceCount;
@@ -57,6 +49,9 @@ public class ActionsSM : StateMachine
 
     private void Awake()
     {
+        //get animatior
+        animator = GetComponentInChildren<Animator>();
+
         //states
         idleActionState.Init(nameof(idleActionState), this);
         meleeAttackState.Init(nameof(meleeAttackState), this);
@@ -85,13 +80,12 @@ public class ActionsSM : StateMachine
             currentState = idleActionState; // fail safe to keep state from being null
         }
 
+        //state handler
         if (_meleeInput.IsPressed() && attackCooldownTimer.CoolDownComplete)
         {
             attackCooldownTimer.StartCooldown();
             ChangeState(meleeAttackState);
         }
-
-        aimBoundsSphere.transform.localScale = new Vector3(currentRange.x, transform.localScale.y, currentRange.z);
     }
 
     protected override BaseState GetInitialState()

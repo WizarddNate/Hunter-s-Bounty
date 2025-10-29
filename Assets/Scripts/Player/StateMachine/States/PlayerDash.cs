@@ -16,8 +16,12 @@ public class PlayerDash : BaseState
 
         Debug.Log("Current movement state: dashing!");
 
+        _sm.isDashing = true;
         _sm.canDash = false;
         startTime = Time.time;
+
+        //change animation
+        _sm.animator.Play("Dash");
     }
 
     public override void UpdateLogic()
@@ -33,6 +37,7 @@ public class PlayerDash : BaseState
 
         if (Time.time < startTime + _sm.dashDuration)
         {
+
             //disable collider
             _sm._characterController.detectCollisions = false; //temp solution as you can only dash through other rigidbodies, not all colliders
 
@@ -45,16 +50,12 @@ public class PlayerDash : BaseState
 
         //Finish dash!
         _sm._characterController.detectCollisions = true;
+        _sm.isDashing = false;
+    }
 
-        //return to previous state
-        if (_sm._inputXZ != Vector3.zero)
-        {
-            stateMachine.ChangeState(((MovementSM)stateMachine).movingState);
-        }
-        else if (_sm._inputXZ == Vector3.zero)
-        {
-            stateMachine.ChangeState(((MovementSM)stateMachine).idleState);
-        }
+    public override void Exit()
+    {
+        base.Exit();
     }
 }
 

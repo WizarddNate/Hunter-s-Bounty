@@ -15,24 +15,14 @@ public class PlayerMoving : BaseState
         _sm.canDash = true; //remove this once dash cooldown is made
 
         //Debug.Log("Current movement state: moving!");
+
+        //change animation
+        _sm.animator.Play("Move");
     }
 
     public override void UpdateLogic()
     {
         base.UpdateLogic();
-
-        //transition to "idle" state if input = 0
-        if (_sm._inputXZ == Vector3.zero)
-        {
-            stateMachine.ChangeState(_sm.idleState);
-        }
-
-        //transition to "dash" state if input is pressed
-        if (_sm._dashInput.IsPressed() && _sm.canDash)
-        {
-            stateMachine.ChangeState(((MovementSM)stateMachine).dashState);
-        }
-
     }
 
     public override void UpdatePhysics()
