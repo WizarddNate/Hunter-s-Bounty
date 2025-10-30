@@ -18,6 +18,8 @@ public class PlayerMeleeAttack : BaseState
 
         Debug.Log("Current action state: melee attack!");
         startTime = Time.time;
+
+        _sm.animator.SetBool("isAttacking", true);
     }
 
     public override void UpdateLogic()
@@ -43,6 +45,9 @@ public class PlayerMeleeAttack : BaseState
     {
         base.Exit();
 
+        Debug.Log("Exiting attack state");
+
+        _sm.animator.SetBool("isAttacking", false);
         _sm.meleeWeaponCol.enabled = false;
     }
 }

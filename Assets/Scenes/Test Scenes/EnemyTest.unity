@@ -5429,6 +5429,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1526964690268444965, guid: 61184bd834b6bfc439682bb800e1507e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1526964690268444965, guid: 61184bd834b6bfc439682bb800e1507e, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 284427ee7120ab44da0f59b52c0ee86b, type: 2}
@@ -9217,18 +9221,6 @@ PrefabInstance:
       propertyPath: attackingState.playerHealth
       value: 
       objectReference: {fileID: 2037778742}
-    - target: {fileID: 5731448975499755054, guid: 6deba8b29509a7c409135db160dddb07, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5731448975499755054, guid: 6deba8b29509a7c409135db160dddb07, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5731448975499755054, guid: 6deba8b29509a7c409135db160dddb07, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2.5
-      objectReference: {fileID: 0}
     - target: {fileID: 9148259019345453752, guid: 6deba8b29509a7c409135db160dddb07, type: 3}
       propertyPath: m_Name
       value: GenAggroEnemy
@@ -9298,10 +9290,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4857739978444272356, guid: 7b829dad63055a342bac0ef60708a0e3, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 4ea219e011277844ba52b682596714ba, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

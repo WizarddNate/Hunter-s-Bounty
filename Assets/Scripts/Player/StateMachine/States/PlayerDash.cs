@@ -21,7 +21,7 @@ public class PlayerDash : BaseState
         startTime = Time.time;
 
         //change animation
-        _sm.animator.Play("Dash");
+        _sm.animator.SetBool("isDashing", true);
     }
 
     public override void UpdateLogic()
@@ -51,11 +51,14 @@ public class PlayerDash : BaseState
         //Finish dash!
         _sm._characterController.detectCollisions = true;
         _sm.isDashing = false;
+
+
     }
 
     public override void Exit()
     {
         base.Exit();
+        _sm.animator.SetBool("isDashing", false);
     }
 }
 
