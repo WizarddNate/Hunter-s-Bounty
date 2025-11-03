@@ -22,6 +22,12 @@ public class UniversalEnemyData : MonoBehaviour
     public float _knockbackDuration = 0.8f;
     private bool _isKnockedBack;
 
+    [Header("Essence Spawn")]
+    public int minDropRate;
+    public int maxDropRate;
+    public float dropRange; //distance from enemy in which the prefab will spawn
+    public GameObject essence;
+
     private Rigidbody rb;
     private NavMeshAgent agent;
     private float navAgentPrevSpeed;
@@ -50,11 +56,13 @@ public class UniversalEnemyData : MonoBehaviour
         //die
         if (_health <= 0)
         {
-            isDying = true;
-            Destroy(gameObject);
+            SpawnEssence();
+
+            Invoke(nameof(Die), 0.25f);
         }
     }
 
+    //spawn popup text when damaged
     public void SpawnText(string text)
     {
         GameObject spawnedText = Instantiate(PopupTextPrefab, gameObject.transform);
@@ -102,5 +110,35 @@ public class UniversalEnemyData : MonoBehaviour
         _isKnockedBack = false;
         //rb.linearVelocity = Vector3.zero;
         agent.speed = navAgentPrevSpeed;
+    }
+
+
+    private void SpawnEssence()
+    {
+        float dropNum = Random.Range(minDropRate, maxDropRate);
+
+        int i = 0;
+        while (i < dropNum)
+        {
+            if (essence == null){
+                Debug.Log("Essence prefab is missing!");
+            }
+
+            float _randomX = Random.Range(-dropRange, dropRange);
+            float _randomZ = Random.Range(-dropRange, dropRange);
+
+            Instantiate(essence, new Vector3(transform.position.x + _randomX, transform.position.y, transform.position.z + _randomZ), Quaternion.identity);
+
+            i++;
+        }
+    }
+
+    //DIE
+    void Die()
+    {
+        isDying = true;
+        Destroy(gameObject);
+
+
     }
 }

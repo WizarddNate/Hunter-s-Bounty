@@ -159,6 +159,10 @@ MonoBehaviour:
   textSpeed: 1
   knockbackForce: 1
   _knockbackDuration: 0.2
+  minDropRate: 0
+  maxDropRate: 1
+  dropRange: 3
+  essence: {fileID: 6862349062168952313, guid: 70328f1f46c29e84fb3afde78ed73195, type: 3}
 --- !u!114 &1633201897264642440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,7 +212,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5
+  m_Speed: 6
   m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 120

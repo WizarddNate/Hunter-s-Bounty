@@ -59,6 +59,7 @@ public class PlayerDash : BaseState
     {
         base.Exit();
         _sm.animator.SetBool("isDashing", false);
+        _sm.canDash = true;
     }
 }
 
