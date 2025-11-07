@@ -1,23 +1,27 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DontDestroy : MonoBehaviour
 {
-    public static DontDestroy Instance;
-
-    //loading screen. Probably wont be needed. 
-    //[SerializeField] private GameObject _loaderCanvas;
+    public static DontDestroy instance = null;
 
     void Awake()
     {
         //make sure there is always a level manager, but only one
-        if (Instance == null)
+
+        if (instance == null)
         {
-            Instance = this;
+
+            Debug.Log("Singleton init");
+
+            instance = this;
             DontDestroyOnLoad(gameObject);
+
         }
         else
         {
             Destroy(gameObject);
+            return;
         }
     }
 }

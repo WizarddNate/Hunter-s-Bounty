@@ -7,8 +7,15 @@ public class Door : MonoBehaviour
 {
     public List<GameObject> enemies = new List<GameObject>();
 
-    public Collider col;
+    Collider _col;
+    bool _isFinished = false;
 
+    [Header("Next level name")]
+    public string lvlName;
+
+    GameObject _lm;
+    LevelManager _lmScript;
+    
     private void Awake()
     {
         //find all active gameobjects with the tag
@@ -16,6 +23,16 @@ public class Door : MonoBehaviour
 
         //convert array to list
         enemies.AddRange(foundObjectsArray);
+
+        _isFinished = false;
+    }
+
+    private void Start()
+    {
+        _lm = GameObject.Find("LevelManager");
+        _lmScript = _lm.GetComponent<LevelManager>();
+
+        _col = GetComponent<Collider>();
     }
 
     private void Update()
@@ -36,8 +53,16 @@ public class Door : MonoBehaviour
         if (enemies.Count <= 0)
         {
             Debug.Log("Level cleared!");
-            gameObject.SetActive(false);
+            _isFinished = true;
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (_isFinished && other.CompareTag("Player"))
+        {
+            Debug.Log("loading next level!");
+            _lmScript.LoadLevel(lvlName);
+        }
+    }
 }

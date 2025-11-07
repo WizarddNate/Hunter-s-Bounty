@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour
     void Awake()
     {
         //make sure there is always a level manager, but only one
+        /*
         if (Instance == null)
         {
             Instance = this;
@@ -22,7 +23,7 @@ public class LevelManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
-        }
+        } */
     }
 
 

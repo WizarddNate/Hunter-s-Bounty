@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7730094719206612631}
   - component: {fileID: 5664996066460185945}
   - component: {fileID: 3369444942145672571}
-  - component: {fileID: 2029816742610163635}
   m_Layer: 0
   m_Name: LevelChange
   m_TagString: Untagged
@@ -66,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0776e33050a75a5488d6f15b8d498dbf, type: 2}
+  - {fileID: 2100000, guid: 57ce9fc9f9130854993ce3afa770b503, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,17 +108,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2029816742610163635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8821322999080292981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17841ae337c3ca14e8dff303172e22d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isRandLevelSelect: 0
-  levelSelect: Level01
