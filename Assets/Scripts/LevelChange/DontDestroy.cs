@@ -20,7 +20,7 @@ public class DontDestroy : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
             return;
         }
     }

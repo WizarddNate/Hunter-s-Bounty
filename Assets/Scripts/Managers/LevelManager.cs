@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    public static LevelManager Instance;
+    //public static LevelManager Instance;
 
     //loading screen. Probably wont be needed. 
     //[SerializeField] private GameObject _loaderCanvas;
