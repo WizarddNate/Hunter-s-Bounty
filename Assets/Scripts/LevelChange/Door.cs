@@ -52,8 +52,11 @@ public class Door : MonoBehaviour
 
         if (enemies.Count <= 0)
         {
-            Debug.Log("Level cleared!");
-            _isFinished = true;
+            if (!_isFinished)
+            {
+                Debug.Log("Level cleared!");
+                _isFinished = true;
+            }
         }
     }
 
