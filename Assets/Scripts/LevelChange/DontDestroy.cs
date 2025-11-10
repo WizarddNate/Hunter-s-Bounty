@@ -1,27 +1,19 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
-
 public class DontDestroy : MonoBehaviour
 {
-    public static DontDestroy instance = null;
+    private static GameObject[] persistentObjects = new GameObject[3];
+    public int objectIndex;
 
     void Awake()
     {
-        //make sure there is always a level manager, but only one
-
-        if (instance == null)
+        if (persistentObjects[objectIndex] == null)
         {
-
-            Debug.Log("Singleton init");
-
-            instance = this;
+            persistentObjects[objectIndex] = gameObject;
             DontDestroyOnLoad(gameObject);
-
         }
-        else
+        else if (persistentObjects[objectIndex] != gameObject)
         {
-            //Destroy(gameObject);
-            return;
+            Destroy(gameObject);
         }
     }
 }
