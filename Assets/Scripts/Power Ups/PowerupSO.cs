@@ -1,16 +1,29 @@
 using UnityEngine;
 
-public class PowerupSO : MonoBehaviour
+[CreateAssetMenu(fileName = "New Power-up", menuName = "Power-up")]
+public class PowerupSO : ScriptableObject
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public Sprite image;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public string text;
+
+    public PowerupEffect effectType; //the effect
+
+    public float effectValue; // the value of the effect
+
+    public bool isUnique; //can the player get it once or multiple times
+
+    public int unlockLevel; //only unlock the effect after a certain amount of rooms
+
+    //apply effect to player
+    //public void Apply(GameObject target);
 }
+
+public enum PowerupEffect
+{
+    DamageIncrease,
+    HealthIncrease,
+    SpeedIncrease,
+    ReduceDashCooldown
+}
+

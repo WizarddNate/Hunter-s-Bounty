@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Test Scenes/EnemyTest.unity
     guid: 1bcc4019206baba42b52002efbaa48c1
   - enabled: 1
+    path: Assets/Scenes/MenuScenes/EndOfLevelMenu.unity
+    guid: 39e6918ad52bfd242acba852818dae83
+  - enabled: 1
     path: Assets/Scenes/LEVELS/Lvl01.unity
     guid: 76fd925497b457d439b0c073e8ff2b1f
   - enabled: 0
