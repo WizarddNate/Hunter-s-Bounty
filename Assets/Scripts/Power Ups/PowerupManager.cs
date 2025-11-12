@@ -76,8 +76,20 @@ public class PowerupManager : MonoBehaviour
         if (!alreadySelectedPowers.Contains(selectedPower))
         {
             alreadySelectedPowers.Add(selectedPower);
-        }
+            selectedPower.Apply();
+            Debug.Log("Selected power: " + selectedPower);
 
-        //go to next level
+            Invoke("NextLevel", 0.4f);
+        }
+    }
+
+    //go to next level
+    void NextLevel()
+    {
+        //god please clean this up and make a PROPER level manager later on
+        GameObject _lm = GameObject.Find("LevelManager");
+        LevelManager _lmScript = _lm.GetComponent<LevelManager>();
+
+        _lmScript.LoadLevel("lvl01");
     }
 }

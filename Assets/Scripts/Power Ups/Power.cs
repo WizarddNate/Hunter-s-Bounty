@@ -17,9 +17,9 @@ public class Power : MonoBehaviour
     }
 
     //currently doesnt work. Look into ways to make the cards interactable. Maybe they need to be buttons?
-    private void OnMouseDown()
+    public void OnSelect()
     {
-        Debug.Log("Power card clicked");
         PowerupManager.Instance.SelectPower(powerInfo);
+        Debug.Log("Power selected!");
     }
 }
