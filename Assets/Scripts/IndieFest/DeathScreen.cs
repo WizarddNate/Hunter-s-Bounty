@@ -7,8 +7,6 @@ public class DeathScreen : MonoBehaviour
 {
     [Header("text")]
     public TextMeshProUGUI finalTimeText;
-    public TextMeshProUGUI highscoreText;
-    public TextMeshProUGUI newHighScoreAnnounceText;
 
     private float finalTime;
     private float _highscore;
@@ -23,11 +21,6 @@ public class DeathScreen : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-        void Start()
-    {
-        newHighScoreAnnounceText.enabled = false;
-    }
-
     public void SetFinalTime()
     {
         finalTime = timer.currentTime;
@@ -40,12 +33,9 @@ public class DeathScreen : MonoBehaviour
         if (finalTime >= _highscore)
         {
             _highscore = finalTime;
-
-            newHighScoreAnnounceText.enabled = true;
         }
 
         TimeSpan bestTime = TimeSpan.FromSeconds(finalTime);
-        highscoreText.text = (("High Score: " + bestTime.Minutes.ToString() + ":" + bestTime.Seconds.ToString() + ":" + bestTime.Milliseconds.ToString()));
     }
 
     public void NewGame()
