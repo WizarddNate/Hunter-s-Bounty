@@ -1,18 +1,26 @@
 using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 using UnityEngine.Windows;
+using static UnityEngine.UI.Image;
 
 [Serializable]
 public class PlayerMoving : BaseState
 {
     private MovementSM _sm;
-    
+
+    //raycast
+    float _maxDistance = 10f;
+    LayerMask _maskToHit;
+    bool _isHittingGround;
 
     public override void Enter()
     {
         base.Enter();
         _sm = (MovementSM)stateMachine;
         _sm.canDash = true; //remove this once dash cooldown is made
+
+        _maskToHit = LayerMask.GetMask("Ground");
 
         //Debug.Log("Current movement state: moving!");
 
@@ -29,10 +37,20 @@ public class PlayerMoving : BaseState
     {
         base.UpdatePhysics();
 
+        Quaternion tiltRot = Quaternion.AngleAxis(50f, _sm.transform.right);
+        Vector3 titledDir = tiltRot * _sm.transform.forward;
+
+        if (Physics.Raycast(_sm.transform.position, titledDir, out RaycastHit hit, _maxDistance, _maskToHit))
+        {
+            //Debug.DrawRay(_sm.transform.position, titledDir);
+            //Debug.Log("something was hit!");
+            _isHittingGround = true;
+        }
+        else _isHittingGround = false;
+
+        Look();
         CalculateSpeed();
         Move();
-        Look();
-
     }
 
     /// <summary>
@@ -67,9 +85,13 @@ public class PlayerMoving : BaseState
     //apply speed, move foward and dash
     private void Move()
     {
-        Vector3 moveDirection = _sm.transform.forward * _sm._currentSpeed * _sm._inputXZ.magnitude * Time.deltaTime + _sm._velocity;
 
-        _sm._characterController.Move(moveDirection);
+        if (_isHittingGround)
+        {
+            Vector3 moveDirection = _sm.transform.forward * _sm._currentSpeed * _sm._inputXZ.magnitude * Time.deltaTime + _sm._velocity;
+
+            _sm._characterController.Move(moveDirection);
+        }
     }
 
     public override void Exit()

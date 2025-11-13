@@ -9,6 +9,10 @@ public class PlayerDash : BaseState
     private MovementSM _sm;
     float startTime;
 
+    //raycast
+    float _maxDistance = 30f;
+    LayerMask _maskToHit;
+    bool _isHittingGround;
     public override void Enter()
     {
         base.Enter();
@@ -20,6 +24,8 @@ public class PlayerDash : BaseState
         _sm.canDash = false;
         startTime = Time.time;
 
+        _maskToHit = LayerMask.GetMask("Ground");
+
         //change animation
         _sm.animator.SetBool("isDashing", true);
     }
@@ -27,15 +33,24 @@ public class PlayerDash : BaseState
     public override void UpdateLogic()
     {
         base.UpdateLogic();
-
     }
 
     public override void UpdatePhysics()
     {
         base.UpdatePhysics();
-   
 
-        if (Time.time < startTime + _sm.dashDuration)
+        Quaternion tiltRot = Quaternion.AngleAxis(35f, _sm.transform.right);
+        Vector3 titledDir = tiltRot * _sm.transform.forward;
+
+        if (Physics.Raycast(_sm.transform.position, titledDir, out RaycastHit hit, _maxDistance, _maskToHit))
+        {
+            Debug.DrawRay(_sm.transform.position, titledDir);
+            //Debug.Log("something was hit!");
+            _isHittingGround = true;
+        }
+        else _isHittingGround = false;
+
+        if (Time.time < startTime + _sm.dashDuration && _isHittingGround)
         {
 
             //disable collider
