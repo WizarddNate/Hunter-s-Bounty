@@ -25,7 +25,7 @@ public class PlayerMoving : BaseState
         //Debug.Log("Current movement state: moving!");
 
         //change animation
-        _sm.animator.Play("Move");
+        _sm.animator.SetBool("isRunning", true);
     }
 
     public override void UpdateLogic()

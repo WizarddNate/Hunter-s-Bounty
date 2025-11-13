@@ -16,7 +16,8 @@ public class PlayerIdle : BaseState
         //Debug.Log("Current movement state: idle!");
 
         //change animation
-        //_sm.animator.Play("Move");
+        _sm.animator.SetBool("isDashing", false);
+        _sm.animator.SetBool("isRunning", false);
     }
 
     public override void UpdateLogic()

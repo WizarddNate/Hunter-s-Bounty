@@ -72,6 +72,7 @@ public class PlayerHealth : MonoBehaviour
         deathMenu.SetActive(false);
 
         _deathMenuScript = deathMenu.GetComponent<DeathScreen>();
+
     }
     public void TakeDamage(int damageAmount)
     {
