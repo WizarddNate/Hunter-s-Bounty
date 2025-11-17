@@ -12,18 +12,12 @@ public class ActionsSM : StateMachine
     [Header("State Control")]
     [SerializeField] string currentStateDisplay;
     [HideInInspector] public PlayerActionIdle idleActionState;
-    [HideInInspector] public PlayerMeleeAttack meleeAttackState;
-    [HideInInspector] public PlayerRangedAttack rangedAttackState;
+    public PlayerMeleeAttack meleeAttackState;
 
     [Header("Attacking")]
     public Collider meleeWeaponCol;
-    public GameObject aimPivot;
     [SerializeField] protected CooldownTimer attackCooldownTimer;
-    private bool isRanged;
     public bool fire { get; set; }
-
-    [Header("Melee Attack vars")]
-    //center of attack
     public Transform attackPoint;
     public LayerMask enemyLayers;
 
@@ -35,7 +29,6 @@ public class ActionsSM : StateMachine
     public InputActionAsset inputActions;
 
     [HideInInspector] public InputAction _meleeInput;
-    [HideInInspector] public InputAction _rangedInput;
 
     private void OnEnable()
     {
@@ -60,7 +53,6 @@ public class ActionsSM : StateMachine
 
         //input
         _meleeInput = InputSystem.actions.FindAction("MeleeAttack");
-        _rangedInput = InputSystem.actions.FindAction("RangedAttack");
     }
       
     public void Start()
