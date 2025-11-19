@@ -136,9 +136,24 @@ MonoBehaviour:
     name: 
   meleeAttackState:
     name: 
+    Combo1CooldownTimer:
+      coolDownAmountTime: 0.4
+    Combo2CooldownTimer:
+      coolDownAmountTime: 0.7
+  BAttack1State:
+    name: 
+  BAttack2State:
+    name: 
+  BAttack3State:
+    name: 
   meleeWeaponCol: {fileID: 9053232676168757554}
-  attackCooldownTimer:
-    coolDownAmountTime: 0.7
+  _attackNum: 0
+  attack1CooldownTimer:
+    coolDownAmountTime: 0.8
+  attack2ComboTimer:
+    coolDownAmountTime: 1.2
+  attack3ComboTimer:
+    coolDownAmountTime: 1.4
   attackPoint: {fileID: 0}
   enemyLayers:
     serializedVersion: 2
@@ -150,15 +165,6 @@ MonoBehaviour:
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 09b97ef4-7be3-417d-be25-aa856e919e7e
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  _rangedInput:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: ef0d4113-be14-4783-88b0-cadea9d6345f
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -382,8 +388,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3, y: 2, z: 3}
-  m_Center: {x: 0.15, y: 1.03, z: 0.93}
+  m_Size: {x: 2.2553668, y: 1.9233432, z: 2.952346}
+  m_Center: {x: 0.5425862, y: 0.9916763, z: 1.0729616}
 --- !u!114 &7177182487254630133
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1262,38 +1262,6 @@ PrefabInstance:
       propertyPath: essenceText
       value: 
       objectReference: {fileID: 993362391}
-    - target: {fileID: 8887350308001289461, guid: 85c5b3944d6e9f347ac2728148b4e2a3, type: 3}
-      propertyPath: meleeAttackState.Combo1CooldownTimer.coolDownAmountTime
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8887350308001289461, guid: 85c5b3944d6e9f347ac2728148b4e2a3, type: 3}
-      propertyPath: meleeAttackState.Combo2CooldownTimer.coolDownAmountTime
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 9053232676168757554, guid: 85c5b3944d6e9f347ac2728148b4e2a3, type: 3}
-      propertyPath: m_Size.x
-      value: 2.2553668
-      objectReference: {fileID: 0}
-    - target: {fileID: 9053232676168757554, guid: 85c5b3944d6e9f347ac2728148b4e2a3, type: 3}
-      propertyPath: m_Size.y
-      value: 1.9233432
-      objectReference: {fileID: 0}
-    - target: {fileID: 9053232676168757554, guid: 85c5b3944d6e9f347ac2728148b4e2a3, type: 3}
-      propertyPath: m_Size.z
-      value: 2.952346
-      objectReference: {fileID: 0}
-    - target: {fileID: 9053232676168757554, guid: 85c5b3944d6e9f347ac2728148b4e2a3, type: 3}
-      propertyPath: m_Center.x
-      value: 0.5425862
-      objectReference: {fileID: 0}
-    - target: {fileID: 9053232676168757554, guid: 85c5b3944d6e9f347ac2728148b4e2a3, type: 3}
-      propertyPath: m_Center.y
-      value: 0.9916763
-      objectReference: {fileID: 0}
-    - target: {fileID: 9053232676168757554, guid: 85c5b3944d6e9f347ac2728148b4e2a3, type: 3}
-      propertyPath: m_Center.z
-      value: 1.0729616
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
