@@ -1,16 +1,12 @@
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.InputSystem.LowLevel;
 
-public class GenericAggroEnemySM : StateMachine
+public class BossSM : StateMachine
 {
-
-    //public Animator animator;
     public NavMeshAgent agent;
-
     public Transform player;
-
     public LayerMask whatIsPlayer;
+    private float _prevSpeed;
 
     [Header("State Control")]
     [SerializeField] string currentStateDisplay;
@@ -18,25 +14,21 @@ public class GenericAggroEnemySM : StateMachine
     public float attackRange;
     bool playerInSightRange, playerInAttackRange;
 
+
     //States 
+    public Idle idleState;
     public Patrolling patrollingState;
     public Chasing chasingState;
     public Attacking attackingState;
-    public TakingDamage takingDamageState;
 
-    /* [Header("Damage")]
-    public int damage;
-    public PlayerHealth playerHealth;
-    public GameObject bulletSpawnPoint;
-    public GameObject bullet; */
+    public Charging chargingState;
+    public Stunned stunnedState;
+    public Summoning summoningState;
+    public OverheadProjectiles projectileState;
 
-    /*[Header("Dropping Objects")]
-    public float dropRange;
-    public GameObject essence;
-    public int minDropRate;
-    public int maxDropRate; */
-
-    private float _prevSpeed;
+    //public startingBF startingState;
+    //public endingBF endingState;
+    
 
     private void Awake()
     {
@@ -49,30 +41,33 @@ public class GenericAggroEnemySM : StateMachine
         _prevSpeed = agent.speed;
 
         //get states
+        idleState.Init(nameof(idleState), this);
         patrollingState.Init(nameof(patrollingState), this);
         chasingState.Init(nameof(chasingState), this);
         attackingState.Init(nameof(attackingState), this);
-        takingDamageState.Init(nameof(takingDamageState), this);
+
+        chargingState.Init(nameof(chargingState), this);
+        stunnedState.Init(nameof(stunnedState), this);
+        summoningState.Init(nameof(summoningState), this);
+        projectileState.Init(nameof(projectileState), this);
 
         //TakeDamage();
-    }
 
-    public void Start()
-    {
-        //animator = gameObject.GetComponentInChildren<Animator>();
     }
 
     private void Update()
     {
         if (currentState != null)
         {
-            currentState.UpdateLogic();
             currentStateDisplay = currentState.ToString();
         }
         else
         {
-            currentState = patrollingState; // fail safe to keep state from being null
+            currentState = idleState; // fail safe to keep state from being null
         }
+        currentState.UpdateLogic();
+
+        //state controller
 
         //Check for sight range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -80,7 +75,6 @@ public class GenericAggroEnemySM : StateMachine
         //and attack range
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        //state handler
         if (!playerInSightRange && !playerInAttackRange)
         {
             ChangeState(patrollingState);
@@ -97,11 +91,6 @@ public class GenericAggroEnemySM : StateMachine
 
     protected override BaseState GetInitialState()
     {
-        return patrollingState;
-    }
-
-    public void TakeDamage()
-    {
-        ChangeState(takingDamageState);
+        return idleState;
     }
 }

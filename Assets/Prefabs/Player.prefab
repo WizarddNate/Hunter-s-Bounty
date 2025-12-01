@@ -146,14 +146,15 @@ MonoBehaviour:
     name: 
   BAttack3State:
     name: 
+  weapon: {fileID: 0}
   meleeWeaponCol: {fileID: 9053232676168757554}
   _attackNum: 0
   attack1CooldownTimer:
-    coolDownAmountTime: 0.8
+    coolDownAmountTime: 0.4
   attack2ComboTimer:
     coolDownAmountTime: 1.2
   attack3ComboTimer:
-    coolDownAmountTime: 1.4
+    coolDownAmountTime: 1.6
   attackPoint: {fileID: 0}
   enemyLayers:
     serializedVersion: 2
@@ -181,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6781fdea23e1df4482f8c19f531a4c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 30
   invincibilityTimer:
     coolDownAmountTime: 0.8
   _healthBar: {fileID: 0}
@@ -388,8 +389,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.2553668, y: 1.9233432, z: 2.952346}
-  m_Center: {x: 0.5425862, y: 0.9916763, z: 1.0729616}
+  m_Size: {x: 2.2553668, y: 1.923348, z: 3.9601672}
+  m_Center: {x: 0.54258597, y: 0.991678, z: 1.5768725}
 --- !u!114 &7177182487254630133
 MonoBehaviour:
   m_ObjectHideFlags: 0
