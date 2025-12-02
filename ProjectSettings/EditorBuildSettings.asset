@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Test Scenes/PlayerTestScene.unity
     guid: 3609ed5f172404fffa694cdeff4f86d2
   - enabled: 1
+    path: Assets/Scenes/LEVELS/StartLevel.unity
+    guid: 366294141092f974baf6d728c0c6b066
+  - enabled: 1
     path: Assets/Scenes/Test Scenes/EnemyTest.unity
     guid: 1bcc4019206baba42b52002efbaa48c1
   - enabled: 1

@@ -58,22 +58,21 @@ public class PlayerHealth : MonoBehaviour
         inputActions.FindActionMap("Player").Disable();
     }
 
-    public void Update()
-    {
-        //healthText.SetText("HP: {0}", health);
-    }
-
-    public void Start()
+    private void Start()
     {
         isDying = false;
         health = maxHealth;
 
-        _healthBar.UpdateHealthbar(maxHealth, health);
         deathMenu.SetActive(false);
 
         _deathMenuScript = deathMenu.GetComponent<DeathScreen>();
 
     }
+    private void Update()
+    {
+        _healthBar.UpdateHealthbar(maxHealth, health);
+    }
+
     public void TakeDamage(int damageAmount)
     {
         //dont take damage if we're dying or if we were hit recently
