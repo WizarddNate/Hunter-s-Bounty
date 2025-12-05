@@ -138,7 +138,5 @@ public class UniversalEnemyData : MonoBehaviour
     {
         isDying = true;
         Destroy(gameObject);
-
-
     }
 }
