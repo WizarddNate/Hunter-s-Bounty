@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class PowerupManager : MonoBehaviour
 {
-    private ActionsSM _ASM;
+    public GameObject player;
+    public EssencePickup _EP;
 
     [SerializeField] GameObject powerupSelectionUI;
 
@@ -30,7 +31,8 @@ public class PowerupManager : MonoBehaviour
     {
         RandomizeNewPowers();
 
-        _ASM = GetComponent<ActionsSM>();
+        player = GameObject.FindWithTag("Player");
+        _EP = player.GetComponent<EssencePickup>();
     }
 
     void RandomizeNewPowers()
@@ -94,11 +96,13 @@ public class PowerupManager : MonoBehaviour
         GameObject _lm = GameObject.Find("LevelManager");
         LevelManager _lmScript = _lm.GetComponent<LevelManager>();
 
-        if (_ASM.essenceCount >= 30)
+        Debug.Log("Essence count: " + _EP.essenceCount);
+
+        if (_EP.essenceCount >= 16)
         {
             _lmScript.LoadLevel("BossArena");
         }
-        else if (_ASM.essenceCount >= 15)
+        else if (_EP.essenceCount >= 8)
         {
             _lmScript.LoadLevel("lvl02");
         }

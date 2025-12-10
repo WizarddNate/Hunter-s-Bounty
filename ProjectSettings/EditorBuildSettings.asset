@@ -19,7 +19,13 @@ EditorBuildSettings:
     guid: 39e6918ad52bfd242acba852818dae83
   - enabled: 1
     path: Assets/Scenes/LEVELS/Lvl01.unity
-    guid: 76fd925497b457d439b0c073e8ff2b1f
+    guid: d206a05f711c0d34199b8f47b2961c17
+  - enabled: 1
+    path: Assets/Scenes/LEVELS/Lvl02.unity
+    guid: b1755b02a6aae144d9d0650454f183f2
+  - enabled: 1
+    path: Assets/Scenes/LEVELS/BossArena.unity
+    guid: ba2e4ce8ab64fc04bace6c890d71563c
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05

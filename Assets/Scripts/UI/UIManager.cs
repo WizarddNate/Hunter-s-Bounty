@@ -77,6 +77,11 @@ public class UIManager : MonoBehaviour
         {
             Debug.Log("Found Object: " + scriptInstance.gameObject);
             Destroy(scriptInstance.gameObject);
+
+            GameObject _lm = GameObject.Find("LevelManager");
+            LevelManager _lmScript = _lm.GetComponent<LevelManager>();
+
+            _lmScript.LoadLevel("StartLevel");
         }
     }
 
