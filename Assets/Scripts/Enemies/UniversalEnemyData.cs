@@ -33,10 +33,15 @@ public class UniversalEnemyData : MonoBehaviour
     private NavMeshAgent agent;
     private float navAgentPrevSpeed;
 
+    public GameObject UI;
+    public UIManager _UIM;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
+
+        _UIM = UI.GetComponent<UIManager>();
 
         isDying = false;
         _isKnockedBack = false;
@@ -141,7 +146,7 @@ public class UniversalEnemyData : MonoBehaviour
 
         if (isBoss)
         {
-
+            _UIM.WinGame();
         }
 
         Destroy(gameObject);

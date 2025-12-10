@@ -233,6 +233,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1876436159}
     m_Modifications:
+    - target: {fileID: 170680092363116364, guid: 7b829dad63055a342bac0ef60708a0e3, type: 3}
+      propertyPath: UI
+      value: 
+      objectReference: {fileID: 1531083260}
     - target: {fileID: 1633201897264642440, guid: 7b829dad63055a342bac0ef60708a0e3, type: 3}
       propertyPath: chasingState.player
       value: 
@@ -717,6 +721,10 @@ PrefabInstance:
       propertyPath: attackingState.playerHealth
       value: 
       objectReference: {fileID: 2037778742}
+    - target: {fileID: 8997712491923103693, guid: 6deba8b29509a7c409135db160dddb07, type: 3}
+      propertyPath: UI
+      value: 
+      objectReference: {fileID: 1531083260}
     - target: {fileID: 9148259019345453752, guid: 6deba8b29509a7c409135db160dddb07, type: 3}
       propertyPath: m_Name
       value: GenAggroEnemy (2)
@@ -2194,14 +2202,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1876436159}
     m_Modifications:
+    - target: {fileID: 170680092363116364, guid: 7b829dad63055a342bac0ef60708a0e3, type: 3}
+      propertyPath: UI
+      value: 
+      objectReference: {fileID: 1531083260}
     - target: {fileID: 1633201897264642440, guid: 7b829dad63055a342bac0ef60708a0e3, type: 3}
       propertyPath: chasingState.player
       value: 
       objectReference: {fileID: 1677714612}
-    - target: {fileID: 1633201897264642440, guid: 7b829dad63055a342bac0ef60708a0e3, type: 3}
-      propertyPath: attackingState.damage
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1633201897264642440, guid: 7b829dad63055a342bac0ef60708a0e3, type: 3}
       propertyPath: attackingState.playerHealth
       value: 
@@ -2209,10 +2217,6 @@ PrefabInstance:
     - target: {fileID: 2151209439719408158, guid: 7b829dad63055a342bac0ef60708a0e3, type: 3}
       propertyPath: m_Name
       value: FasterAggroEnemy (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2151209439719408158, guid: 7b829dad63055a342bac0ef60708a0e3, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4052107117634441691, guid: 7b829dad63055a342bac0ef60708a0e3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2428,6 +2432,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1876436159}
     m_Modifications:
+    - target: {fileID: 170680092363116364, guid: 7b829dad63055a342bac0ef60708a0e3, type: 3}
+      propertyPath: UI
+      value: 
+      objectReference: {fileID: 1531083260}
     - target: {fileID: 1633201897264642440, guid: 7b829dad63055a342bac0ef60708a0e3, type: 3}
       propertyPath: chasingState.player
       value: 
@@ -3518,6 +3526,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7307297287499237401, guid: d528355e9b527b3429f6eafe8fdf3989, type: 3}
   m_PrefabInstance: {fileID: 78727466111680923}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1531083260 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8447792676723483081, guid: 469a2d1bcac126c41a2a015d0fe400af, type: 3}
+  m_PrefabInstance: {fileID: 1132535151}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1531083262 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1022624708263699236, guid: 469a2d1bcac126c41a2a015d0fe400af, type: 3}
+  m_PrefabInstance: {fileID: 1132535151}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531083260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 189e02e423c482041a9fcd6b4f77a929, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1560099310 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5037699927594695625, guid: b4506de70198a2d4a90bf4fe87516fd4, type: 3}
@@ -4875,6 +4899,14 @@ PrefabInstance:
       propertyPath: attackingState.playerHealth
       value: 
       objectReference: {fileID: 2037778742}
+    - target: {fileID: 8997712491923103693, guid: 6deba8b29509a7c409135db160dddb07, type: 3}
+      propertyPath: UI
+      value: 
+      objectReference: {fileID: 1531083260}
+    - target: {fileID: 8997712491923103693, guid: 6deba8b29509a7c409135db160dddb07, type: 3}
+      propertyPath: _UIM
+      value: 
+      objectReference: {fileID: 1531083262}
     - target: {fileID: 9148259019345453752, guid: 6deba8b29509a7c409135db160dddb07, type: 3}
       propertyPath: m_Name
       value: GenAggroEnemy
@@ -5695,6 +5727,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1876436159}
     m_Modifications:
+    - target: {fileID: 170680092363116364, guid: 7b829dad63055a342bac0ef60708a0e3, type: 3}
+      propertyPath: UI
+      value: 
+      objectReference: {fileID: 1531083260}
     - target: {fileID: 1633201897264642440, guid: 7b829dad63055a342bac0ef60708a0e3, type: 3}
       propertyPath: chasingState.player
       value: 

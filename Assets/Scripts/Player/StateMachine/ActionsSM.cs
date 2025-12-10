@@ -26,7 +26,6 @@ public class ActionsSM : StateMachine
     [SerializeField] protected CooldownTimer attack2ComboTimer;
     [SerializeField] protected CooldownTimer attack3ComboTimer;
     public bool fire { get; set; }
-    public Transform attackPoint;
     public LayerMask enemyLayers;
 
 

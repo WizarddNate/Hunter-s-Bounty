@@ -19,6 +19,11 @@ public class UIManager : MonoBehaviour
 
         string sceneName = SceneManager.GetActiveScene().name;
 
+        Debug.Log("Current level name: " + sceneName);
+
+        player = GameObject.FindWithTag("Player");
+        mSM = player.GetComponent<MovementSM>();
+
         if (sceneName == "StartLevel")
         {
             startScreen.SetActive(true);
@@ -29,9 +34,11 @@ public class UIManager : MonoBehaviour
             deathScreen.SetActive(false);
             HUD.SetActive(false);
 
-            player = GameObject.FindWithTag("Player");
-            mSM = player.GetComponent<MovementSM>();
             mSM.inputActions.FindActionMap("Player").Disable();
+        }
+        else
+        {
+            mSM.inputActions.FindActionMap("Player").Enable();
         }
     }
 
@@ -66,6 +73,7 @@ public class UIManager : MonoBehaviour
     public void WinGame()
     {
         winScreen.SetActive(true);
+        HUD.SetActive(false);
     }
 
     public void RestartGame()

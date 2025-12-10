@@ -164,6 +164,8 @@ MonoBehaviour:
   maxDropRate: 1
   dropRange: 3
   essence: {fileID: 6862349062168952313, guid: 70328f1f46c29e84fb3afde78ed73195, type: 3}
+  UI: {fileID: 0}
+  _UIM: {fileID: 0}
 --- !u!114 &1633201897264642440
 MonoBehaviour:
   m_ObjectHideFlags: 0
