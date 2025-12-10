@@ -1,10 +1,14 @@
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
     public GameObject startScreen;
     public GameObject aboutScreen;
+    public GameObject aboutBUTTON;
     public GameObject deathScreen;
+    public GameObject winScreen;
     public GameObject HUD;
 
     public GameObject player;
@@ -12,15 +16,23 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        startScreen.SetActive(true);
-        aboutScreen.SetActive(false);
-        deathScreen.SetActive(false);
-        HUD.SetActive(false);
 
-        player = GameObject.FindWithTag("Player");
-        mSM = player.GetComponent<MovementSM>();
+        string sceneName = SceneManager.GetActiveScene().name;
 
-        mSM.inputActions.FindActionMap("Player").Disable();
+        if (sceneName == "StartLevel")
+        {
+            startScreen.SetActive(true);
+            aboutBUTTON.SetActive(true);
+
+            aboutScreen.SetActive(false);
+            winScreen.SetActive(false);
+            deathScreen.SetActive(false);
+            HUD.SetActive(false);
+
+            player = GameObject.FindWithTag("Player");
+            mSM = player.GetComponent<MovementSM>();
+            mSM.inputActions.FindActionMap("Player").Disable();
+        }
     }
 
     /// <summary>
@@ -38,7 +50,36 @@ public class UIManager : MonoBehaviour
     public void CloseStartMenu()
     {
         startScreen.SetActive(false);
+        HUD.SetActive(true);
     }
+
+    public void OpenAbout()
+    {
+        aboutScreen.SetActive(true);
+    }
+
+    public void CloseAbout()
+    {
+        aboutScreen.SetActive(false);
+    }
+
+    public void WinGame()
+    {
+        winScreen.SetActive(true);
+    }
+
+    public void RestartGame()
+    {
+        var scriptsToDestroy = FindObjectsByType(typeof(DontDestroy), FindObjectsSortMode.None);
+
+
+        foreach (DontDestroy scriptInstance in scriptsToDestroy)
+        {
+            Debug.Log("Found Object: " + scriptInstance.gameObject);
+            Destroy(scriptInstance.gameObject);
+        }
+    }
+
 
     public void Quit()
     {

@@ -11,6 +11,7 @@ public class UniversalEnemyData : MonoBehaviour
     public int maxhealth;
     int _health;
     public bool isDying; //var isnt currently being used anywhere, but i have a feeling it will be useful someday
+    public bool isBoss  = false;
 
     [Header("Damage UI")]
     public GameObject PopupTextPrefab;
@@ -137,6 +138,12 @@ public class UniversalEnemyData : MonoBehaviour
     void Die()
     {
         isDying = true;
+
+        if (isBoss)
+        {
+
+        }
+
         Destroy(gameObject);
     }
 }

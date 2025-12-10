@@ -82,9 +82,6 @@ public class PlayerHealth : MonoBehaviour
 
         health -= damageAmount;
 
-        //popup text?
-        SpawnText(damageAmount.ToString());
-
         //hp bar
         _healthBar.UpdateHealthbar(maxHealth, health);
         
@@ -95,13 +92,6 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void SpawnText(string text)
-    {
-        GameObject spawnedText = Instantiate(PopupTextPrefab, gameObject.transform);
-        spawnedText.transform.position = Vector3.zero;
-        spawnedText.GetComponent<TextDamagePopup>().SetupText(text);
-        StartCoroutine(Move(spawnedText));
-    }
 
     //animate the spawned damage text
     public IEnumerator Move(GameObject _textObj)

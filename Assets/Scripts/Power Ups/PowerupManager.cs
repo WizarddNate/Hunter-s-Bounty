@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PowerupManager : MonoBehaviour
 {
+    private ActionsSM _ASM;
+
     [SerializeField] GameObject powerupSelectionUI;
 
     [SerializeField] GameObject powerupPrefab;
@@ -27,6 +29,8 @@ public class PowerupManager : MonoBehaviour
     private void Start()
     {
         RandomizeNewPowers();
+
+        _ASM = GetComponent<ActionsSM>();
     }
 
     void RandomizeNewPowers()
@@ -90,6 +94,17 @@ public class PowerupManager : MonoBehaviour
         GameObject _lm = GameObject.Find("LevelManager");
         LevelManager _lmScript = _lm.GetComponent<LevelManager>();
 
-        _lmScript.LoadLevel("lvl01");
+        if (_ASM.essenceCount >= 30)
+        {
+            _lmScript.LoadLevel("BossArena");
+        }
+        else if (_ASM.essenceCount >= 15)
+        {
+            _lmScript.LoadLevel("lvl02");
+        }
+        else
+        {
+            _lmScript.LoadLevel("lvl01");
+        }
     }
 }
