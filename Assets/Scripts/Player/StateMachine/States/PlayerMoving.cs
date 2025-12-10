@@ -10,7 +10,7 @@ public class PlayerMoving : BaseState
     private MovementSM _sm;
 
     //raycast
-    float _maxDistance = 10f;
+    float _maxDistance = 20f;
     LayerMask _maskToHit;
     bool _isHittingGround;
 

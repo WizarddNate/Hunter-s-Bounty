@@ -3,7 +3,6 @@ using UnityEngine;
 public class PlayerSpawn : MonoBehaviour
 {
     GameObject _player;
-    public bool freezePlayer;
 
 
     void Start()

@@ -21,6 +21,7 @@ public class PlayerHealth : MonoBehaviour
     public float textDistance = 4f;
     public float textSpeed = 1f;
     public GameObject deathMenu;
+    public GameObject HUD;
     private DeathScreen _deathMenuScript;
 
     [Header("Animation")]
@@ -112,6 +113,7 @@ public class PlayerHealth : MonoBehaviour
         isDying = true;
 
         deathMenu.SetActive(true);
+        HUD.SetActive(false);
         _deathMenuScript.SetFinalTime();
 
 

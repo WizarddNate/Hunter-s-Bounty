@@ -56,8 +56,8 @@ public class UIManager : MonoBehaviour
 
     public void CloseStartMenu()
     {
-        startScreen.SetActive(false);
         HUD.SetActive(true);
+        startScreen.SetActive(false);
     }
 
     public void OpenAbout()
@@ -72,8 +72,8 @@ public class UIManager : MonoBehaviour
 
     public void WinGame()
     {
-        winScreen.SetActive(true);
         HUD.SetActive(false);
+        winScreen.SetActive(true);
     }
 
     public void RestartGame()
